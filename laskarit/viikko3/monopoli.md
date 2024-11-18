@@ -4,7 +4,6 @@
  classDiagram
     Monopolipeli "1" -- "2" Noppa
     Monopolipeli "1" -- "1" Pelilauta
-    Monopolipeli "1" -- "1" Aloitusruutu
     
     Ruutu <|-- SattumaJaYhteismaa
     Ruutu <|-- Aloitusruutu
@@ -20,17 +19,15 @@
     Ruutu "1" -- "0..8" Pelinappula
     Pelinappula "1" -- "1" Pelaaja
     Pelaaja "2..8" -- "1" Monopolipeli
+    Pelaaja "1" -- "*" NormaalitKadut : omistaa
+    SattumaJaYhteismaa "1" -- "*" Kortti
 
     class Pelaaja {
         +int raha
     }
-    
-    class SattumaRuutu {
-        +kortit: Kortti[]
-    }
 
-    class YhteismaaRuutu {
-        +kortit: Kortti[]
+    class Ruutu {
+        +toiminto()
     }
 
     class Kortti {
@@ -39,5 +36,7 @@
     
     class NormaalitKadut {
         +string nimi
+        +int talot(0..4)
+        +int hotellit(0..1)
     }
 ```
