@@ -1,8 +1,11 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Budjetointisovellus
 
-Tämä repositorio sisältää *Helsingin yliopiston* **Ohjelmistotekniikka** -kurssin harjoitustehtäviä, sekä harjoitustyön.
+Repositorio sisältää Helsingin yliopiston **Ohjelmistotekniikka** -kurssin harjoitustyön *Budjetointisovellus*.
 
-* [Harjoitustyön vaatimusmäärittely](./budgeting-app/dokumentaatio/vaatimusmaarittely.md)
-* [Työaikakirjanpito](./budgeting-app/dokumentaatio/tuntikirjanpito.md)
-* [Viikon 1 laskarit](./laskarit)
-* [Viikon 2 laskarit](./laskarit/viikko2)
+Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista. Menoja ja tuloja voi asettaa eri kategorioihin, kuten ruoka, vapaa-aika, laskut. 
+
+## Dokumentaatio
+
+* [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+* [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+* [Changelog](./dokumentaatio/changelog.md)
