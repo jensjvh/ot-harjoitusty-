@@ -1,6 +1,7 @@
 from entities.user import User
 from database_connection import get_database_connection
 
+
 class UserRepository:
     """A class used for database operations on users."""
 
@@ -43,7 +44,7 @@ class UserRepository:
         self._connection.commit()
 
         return user
-    
+
     def delete_all(self):
         """
         Delete all users from users table.
@@ -55,5 +56,5 @@ class UserRepository:
 
         self._connection.commit()
 
-    
+
 user_repository = UserRepository(get_database_connection())
