@@ -1,5 +1,4 @@
 from entities.user import User
-from services.budget_service import budget_service
 from database_connection import get_database_connection
 
 
