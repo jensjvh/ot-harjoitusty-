@@ -20,6 +20,16 @@ class BudgetService:
         """
         existing_user = self._user_repository.find_user(username)
 
+        if existing_user:
+            return "Error"
+
+        user = self._user_repository.create(User(username, password))
+
+        if login:
+            self._user = user
+
+        return user
+
     def login(self, username, password):
         """
         Log the user in.
