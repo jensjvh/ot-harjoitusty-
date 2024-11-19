@@ -23,6 +23,24 @@ class UserRepository:
 
         return [User(row["username"], row["password"]) for row in rows]
 
+    def find_user(self, username):
+        """
+        Find user with the given username.
+        """
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            "select * from users where username = ?",
+            (username,)
+        )
+
+        result = cursor.fetchone()
+
+        if result:
+            return User(result["username"], result["password"])
+        else:
+            return None
+
     def create(self, user):
         """Add a user to the database.
 
