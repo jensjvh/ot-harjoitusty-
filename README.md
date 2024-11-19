@@ -14,3 +14,4 @@ Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saa
 
 * Suorita ensin komento `poetry run invoke build` rakentaaksesi tietokannan.
 * Tämän jälkeen testit voi suorittaa komennolla `poetry run invoke test`.
+* Testikattavuus: `poetry run invoke coverage` ja `poetry run invoke coverage-report`
