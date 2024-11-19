@@ -9,3 +9,8 @@ Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saa
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 * [Changelog](./dokumentaatio/changelog.md)
+
+## Käyttöohjeet
+
+* Suorita ensin komento `poetry run invoke build` rakentaaksesi tietokannan.
+* Tämän jälkeen testit voi suorittaa komennolla `poetry run invoke test`.
