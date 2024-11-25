@@ -8,6 +8,9 @@ class TestUserRepository(unittest.TestCase):
         user_repository.delete_all()
         self.user_test1 = User('test1', 'test123')
 
+    def tearDown(self):
+        user_repository.delete_all()
+
     def test_create(self):
         user_repository.create(self.user_test1)
         users = user_repository.find_all()
@@ -31,3 +34,9 @@ class TestUserRepository(unittest.TestCase):
         found_user = user_repository.find_user('test1')
 
         self.assertEqual(user.username, found_user.username)
+
+    def test_find_user_if_not_found(self):
+        user = user_repository.create(self.user_test1)
+        found_user = user_repository.find_user('test2')
+
+        self.assertEqual(None, found_user)
