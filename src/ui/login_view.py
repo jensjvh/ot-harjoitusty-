@@ -1,4 +1,5 @@
 from tkinter import ttk, constants
+from services.budget_service import budget_service
 
 
 class LoginView:
@@ -6,11 +7,12 @@ class LoginView:
     A class representing the login view of the app.
     """
 
-    def __init__(self, root):
+    def __init__(self, root, handle_show_register_view):
         self._root = root
         self._frame = None
         self._username_entry = None
         self._password_entry = None
+        self._handle_show_register_view = handle_show_register_view
 
         self._initialize()
 
@@ -25,6 +27,9 @@ class LoginView:
     def _login_handler(self):
         username = self._username_entry.get()
         password = self._password_entry.get()
+
+        budget_service.login(username, password)
+        #self._handle_login()
 
     def _add_heading_label(self):
         heading_label = ttk.Label(
@@ -63,10 +68,11 @@ class LoginView:
 
         register_button = ttk.Button(
             master=self._frame,
-            text="Create account"
+            text="Create account",
+            command=self._handle_show_register_view
         )
 
-        self._frame.grid_columnconfigure(1, weight=1, minsize=400)
+        self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
 
         login_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
         register_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
