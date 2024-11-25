@@ -38,8 +38,7 @@ class UserRepository:
 
         if result:
             return User(result["username"], result["password"])
-        else:
-            return None
+        return None
 
     def create(self, user):
         """Add a user to the database.
