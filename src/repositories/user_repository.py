@@ -10,7 +10,7 @@ class UserRepository:
 
         Parameters
         ----------
-        connection: SQLite `Connection` object.
+            connection: SQLite `Connection` object.
         """
         self._connection = connection
 
@@ -45,11 +45,11 @@ class UserRepository:
 
         Parameters
         ----------
-        user: `User` object.
+            user: `User` object.
 
         Returns
         -------
-        user: The added user as an `User` object.
+            user: The added user as an `User` object.
         """
         cursor = self._connection.cursor()
 

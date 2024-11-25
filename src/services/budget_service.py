@@ -17,6 +17,12 @@ class BudgetService:
     def create_user(self, username, password, login=True):
         """
         Create a new user and log in by default.
+
+        Parameters
+        ----------
+            username (str): String representing the username.
+            password (str): String representing the password.
+            login (bool): Optional param, log the user in if True.
         """
         existing_user = self._user_repository.find_user(username)
 
@@ -47,7 +53,7 @@ class BudgetService:
         """
         Log the user out.
         """
-        pass
+        self._user = None
 
     def get_current_user(self):
         return self._user
