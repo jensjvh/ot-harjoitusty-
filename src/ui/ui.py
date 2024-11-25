@@ -41,7 +41,7 @@ class UI:
 
         self._current_view = RegisterView(
             self._root,
+            self._show_login_view,
             self._show_login_view
-            # self._handle_register
         )
         self._current_view.pack()
