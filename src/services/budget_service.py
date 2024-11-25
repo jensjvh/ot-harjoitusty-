@@ -4,6 +4,11 @@ from repositories.user_repository import (
     user_repository as default_user_repository
 )
 
+class UserExistsError(Exception):
+    pass
+
+class InvalidCredentialsError(Exception):
+    pass
 
 class BudgetService:
     """
@@ -27,7 +32,10 @@ class BudgetService:
         existing_user = self._user_repository.find_user(username)
 
         if existing_user:
-            return "Error"
+            raise UserExistsError(f"User {username} already exists")
+
+        if len(password) < 8:
+            raise InvalidCredentialsError("Password should be at least 8 characters long")
 
         user = self._user_repository.create(User(username, password))
 
