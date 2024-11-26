@@ -26,7 +26,7 @@ class LoginView:
     def destroy(self):
         """Destroy the login view."""
         self._frame.destroy()
-    
+
     def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()
@@ -47,7 +47,6 @@ class LoginView:
             self._handle_login()
         except InvalidCredentialsError as e:
             self._show_error(e)
-            
 
     def _add_heading_label(self):
         heading_label = ttk.Label(
@@ -79,11 +78,11 @@ class LoginView:
 
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
-            master = self._frame,
-            textvariable = self._error_variable,
-            foreground = 'red'
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground='red'
         )
-        self._error_label.grid(row = 0, column = 1, padx = 10, pady = 10)
+        self._error_label.grid(row=0, column=1, padx=10, pady=10)
 
         self._add_heading_label()
         self._initialize_username_input()

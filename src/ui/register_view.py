@@ -8,7 +8,7 @@ class RegisterView:
     def __init__(self, root, handle_register, handle_show_login_view):
         """
         Class constructor for creating a new register view.
-        
+
         Parameters
         ----------
             root: Tkinter widget.
@@ -47,7 +47,7 @@ class RegisterView:
         if len(username) == 0 or len(password) == 0:
             self._show_error("Please enter a username and a password")
             return
-        
+
         try:
             budget_service.create_user(username, password)
             self._handle_register()
@@ -84,11 +84,11 @@ class RegisterView:
 
         self._error_variable = StringVar(self._frame)
         self._error_label = ttk.Label(
-            master = self._frame,
-            textvariable = self._error_variable,
-            foreground = 'red'
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground='red'
         )
-        self._error_label.grid(row = 0, column = 1, padx = 10, pady = 10)
+        self._error_label.grid(row=0, column=1, padx=10, pady=10)
 
         self._add_heading_label()
         self._initialize_username_input()
@@ -103,11 +103,9 @@ class RegisterView:
         back_button = ttk.Button(
             master=self._frame, text="Back", command=self._handle_show_login_view)
 
-        
         self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
 
         register_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
         back_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
 
         self._hide_error()
-        

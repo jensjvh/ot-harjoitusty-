@@ -63,5 +63,4 @@ class BudgetMainView:
             sticky=constants.EW
         )
 
-
         self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
