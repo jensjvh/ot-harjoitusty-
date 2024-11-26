@@ -9,6 +9,7 @@ Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saa
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 * [Changelog](./dokumentaatio/changelog.md)
+* [Alustava luokkakaavio](./dokumentaatio/arkkitehtuuri.md)
 
 ## Käyttöohjeet
 
