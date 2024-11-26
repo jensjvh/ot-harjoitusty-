@@ -16,10 +16,12 @@ class TestBudgetService(unittest.TestCase):
         with self.assertRaises(InvalidCredentialsError) as context:
             budget_service.create_user('test_invalid', 'short')
 
-        self.assertEqual(str(context.exception), "Password should be at least 8 characters long")
+        self.assertEqual(str(context.exception),
+                         "Password should be at least 8 characters long")
 
     def test_invalid_login_credentials(self):
         with self.assertRaises(InvalidCredentialsError) as context:
             budget_service.login('test_invalid', 'unknownuser')
 
-        self.assertEqual(str(context.exception), "Invalid username or password")
+        self.assertEqual(str(context.exception),
+                         "Invalid username or password")

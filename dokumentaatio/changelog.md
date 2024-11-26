@@ -16,3 +16,4 @@
 * Kirjautumisessa ja rekisteröimisessä havaitaan virheet ja ilmoitetaan käyttäjälle.
 * Mahdollisuus liikkua sovelluksen näkymien välillä.
 * Testejä BudgetService-luokan käyttäjätoiminnallisuuksia varten.
+* Pohja Budget-oliolle.
