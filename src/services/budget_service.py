@@ -51,7 +51,7 @@ class BudgetService:
         user = self._user_repository.find_user(username)
 
         if not user or user.password != password:
-            return "Error"
+            raise InvalidCredentialsError("Invalid username or password")
 
         self._user = user
 

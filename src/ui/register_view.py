@@ -30,7 +30,7 @@ class RegisterView:
         self._frame.grid(row=0, column=0, sticky=constants.NSEW)
 
     def destroy(self):
-        """"Destroy the register view."""
+        """Destroy the register view."""
         self._frame.destroy()
 
     def _show_error(self, message):
@@ -104,7 +104,7 @@ class RegisterView:
             master=self._frame, text="Back", command=self._handle_show_login_view)
 
         
-        self._frame.grid_columnconfigure(1, weight=1, minsize=400)
+        self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
 
         register_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
         back_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
