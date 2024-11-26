@@ -6,7 +6,7 @@ from entities.user import User
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         user_repository.delete_all()
-        self.user_test1 = User('test1', 'test123')
+        self.user_test1 = User('test1', 'test1234')
 
     def tearDown(self):
         user_repository.delete_all()
