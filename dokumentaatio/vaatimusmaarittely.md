@@ -10,22 +10,23 @@ Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja.
 
 - [x] Yksinkertainen käyttöliittymä.
 - [x] Käyttäjä voi luoda järjestelmään käyttäjätunnuksen salasanalla
-- [x] Tunnusten ja salasanan täytyy täyttää vaatimukset (uniikki käyttäjä, tarpeeksi pitkä)
-- Käyttäjä voi kirjautua järjestelmään
-- Käyttäjä voi syöttää tulot ja menot kategorioittain.
-  - Käyttäjä voi valita kustannusluokan (esim. asuminen, ruoka, vapaa-aika).
-  - Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
-- Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
+  - [x] Tunnusten ja salasanan täytyy täyttää vaatimukset (uniikki käyttäjä, tarpeeksi pitkä)
+- [ ] Käyttäjä voi kirjautua järjestelmään
+- [ ] Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
+- [ ] Käyttäjä voi syöttää tulot ja menot kategorioittain.
+  - [ ] Käyttäjä voi valita kustannusluokan (esim. asuminen, ruoka, vapaa-aika).
+  - [ ] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
+
 
 
 ### Jatkokehitys
 
-- Responsiivinen ja viimeistelty käyttöliittymä. Selkeät esitystavat datalle.
-- Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
-  - Ohjelma laskee säästöprosentin.
-- Käyttäjä voi muokata annettuja tietoja
-- Kalenterinäkymä.
-- Käyttäjä voi tarkastella kuukausittaista yhteenvetoa.
-  - Yhteenvedossa näytetään menot kategoriakohtaisesti.
-- Käyttäjätunnuksen ja tietojen poisto.
-- Ennuste käyttäjän budjetin kehityksestä.
+- [ ] Responsiivinen ja viimeistelty käyttöliittymä. Selkeät esitystavat datalle.
+- [ ] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
+  - [ ] Ohjelma laskee säästöprosentin.
+- [ ] Käyttäjä voi muokata annettuja tietoja
+- [ ] Kalenterinäkymä.
+- [ ] Käyttäjä voi tarkastella kuukausittaista yhteenvetoa.
+  - [ ] Yhteenvedossa näytetään menot kategoriakohtaisesti.
+- [ ] Käyttäjätunnuksen ja tietojen poisto.
+- [ ] Ennuste käyttäjän budjetin kehityksestä.
