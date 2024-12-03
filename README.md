@@ -4,6 +4,10 @@ Repositorio sisältää Helsingin yliopiston **Ohjelmistotekniikka** -kurssin ha
 
 Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saada yhteenvetoja budjetista. Menoja ja tuloja voi asettaa eri kategorioihin, kuten ruoka, vapaa-aika, laskut.
 
+## Uusin release
+
+[Uusin release täällä](https://github.com/jensjvh/ot-harjoitustyo/releases/latest).
+
 ## Dokumentaatio
 
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
