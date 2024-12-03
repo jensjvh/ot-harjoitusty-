@@ -13,6 +13,9 @@ def drop_tables(connection):
     cursor = connection.cursor()
 
     cursor.execute('''
+                   drop table if exists budgets;
+                ''')
+    cursor.execute('''
                    drop table if exists users;
                 ''')
 
@@ -34,6 +37,17 @@ def create_tables(connection):
                    create table users (
                    username text primary key,
                    password text
+                   );
+                ''')
+
+    cursor.execute('''
+                   create table budgets (
+                   id integer primary key autoincrement,
+                   user text,
+                   amount real,
+                   category text,
+                   date text,
+                   foreign key (user) references users (username)
                    );
                 ''')
 

@@ -13,9 +13,9 @@ Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja.
   - [x] Tunnusten ja salasanan täytyy täyttää vaatimukset (uniikki käyttäjä, tarpeeksi pitkä)
 - [x] Käyttäjä voi kirjautua järjestelmään
 - [x] Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
-- [ ] Käyttäjä voi syöttää tulot ja menot kategorioittain.
+- [x] Käyttäjä voi syöttää tulot ja menot kategorioittain.
   - [ ] Käyttäjä voi valita kustannusluokan (esim. asuminen, ruoka, vapaa-aika).
-  - [ ] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
+  - [x] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
 
 
 

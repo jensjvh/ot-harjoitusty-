@@ -17,3 +17,12 @@
 * Mahdollisuus liikkua sovelluksen näkymien välillä.
 * Testejä BudgetService-luokan käyttäjätoiminnallisuuksia varten.
 * Pohja Budget-oliolle.
+
+## Viikko 5
+
+### Lisäykset
+* BudgetRepository-luokka, joka vastaa Budget-olioiden tietokantaoperaatioista.
+* BudgetMainView sisältää pöydän, josta käyttäjän Budget-oliot voi nähdä.
+* Käyttäjä voi luoda uusia Budget-olioita pop-up valikolla BudgetMainViewissä.
+* Budget-olion alustava rakenne, joka toimii yksinkertaista tiedon tallettamista varten, sisältää budjetin määrän, kategorian ja päivämäärän.
+* Testejä BudgetRepository-luokalle.
