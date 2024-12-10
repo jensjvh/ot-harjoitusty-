@@ -1,53 +1,61 @@
 # Arkkitehtuurikuvaus
 
-## Ohjelman alustava rakenne
+## Sovelluslogiikka
 
 ```mermaid
   classDiagram
     UI  ..> BudgetService
     BudgetService ..> UserRepository
+    BudgetService ..> BudgetRepository
     BudgetService "1" -- "*" User
     User "1" -- "*" Budget
     UserRepository ..> User
     BudgetRepository ..> Budget
+    UI ..> UserService
+    UserService ..> UserRepository
+    UserService "1" -- "*" User
 ```
 
-## Kirjautumisen sekvenssikaavio
+## Käynnistys ja kirjautuminen
 
 ```mermaid
 sequenceDiagram
     actor User
     participant UI
-    participant BudgetService
+    participant UserService
     participant UserRepository
     UI->>UI: _show_login_view()
     User->>UI: Login with username and password
-    UI->>BudgetService: login(username, password)
-    BudgetService->>UserRepository: find_user(username)
-    UserRepository->>BudgetService: user
-    BudgetService->>UI: user
+    UI->>UserService: login(username, password)
+    UserService->>UserRepository: find_user(username)
+    UserRepository->>UserService: user
+    UserService->>UI: user
     UI->>UI: _show_budget_main_view()
 ```
 
-## Rekisteröitymisen sekvenssikaavio
+Käynnistyksen yhteydessä UI kutsuu _show_login_view()-metodia, jolla näytetään kirjautumisnäkymä käyttäjälle. Käyttäjän painamalla kirjautumispainiketta, kutsuu UI `UserService` palvelun login()-metodia käyttäjätunnuksella ja salasanalla. `UserService` kutsuu `UserRepository` luokan find_user()metodia parametrina käyttäjänimi, joka palauttaa `User` olion, jos käyttäjä löytyy. `UserService` palauttaa tämän `User` olion, ja UI ohjaa käyttäjän sovelluksen päänäkymään metodilla _show_budget_main_view().
+
+## Rekisteröityminen
 
 ```mermaid
 sequenceDiagram
     actor User
     participant UI
-    participant BudgetService
+    participant UserService
     participant UserRepository
     participant new_user
     UI->>UI: _show_login_view()
     User->>UI: Click "Create account" button
     UI->>UI: _show_register_view()
     User->>UI: Register with username and password
-    UI->>BudgetService: create_user(username, password)
-    BudgetService->>UserRepository: find_user(username)
-    UserRepository->>BudgetService: None
-    BudgetService->>new_user: User(username, password)
-    BudgetService->>UserRepository: create(new_user)
-    UserRepository->>BudgetService: user
-    BudgetService->>UI: user
+    UI->>UserService: create_user(username, password)
+    UserService->>UserRepository: find_user(username)
+    UserRepository->>UserService: None
+    UserService->>new_user: User(username, password)
+    UserService->>UserRepository: create(new_user)
+    UserRepository->>UserService: user
+    UserService->>UI: user
     UI->>UI: _show_budget_main_view()
 ```
+
+UI kutsuu _show_login_view()-metodia, joka näyttää käyttäjälle kirjautumisnäkymän. Käyttäjä painaa "Create account" -painiketta, jolloin UI kutsuu _show_register_view()-metodia, joka näyttää rekisteröitymisnäkymän. UI kutsuu `UserService`-palvelun create_user()-metodia, jossa käyttäjätunnus ja salasana annetaan parametreina. `UserService` kutsuu `UserRepository`-luokan find_user()-metodia tarkistaakseen, onko käyttäjätunnus jo olemassa. `UserRepository` ei löydä käyttäjää, joten se palauttaa None. `UserService` luo uuden käyttäjän User-olion muodossa, käyttäjätunnuksella ja salasanalla. UserService kutsuu `UserRepository`-luokkaa create()-metodilla luodakseen uuden käyttäjän tietokantaan. `UserRepository` palauttaa luodun käyttäjän UserService-palvelulle. UserService palauttaa käyttäjän UI:lle. UI ohjaa käyttäjän sovelluksen päänäkymään kutsumalla _show_budget_main_view()-metodia.
