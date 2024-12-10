@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar
-from services.budget_service import budget_service, UserExistsError, InvalidCredentialsError
+from services.user_service import user_service, UserExistsError, InvalidCredentialsError
 
 
 class RegisterView:
@@ -49,7 +49,7 @@ class RegisterView:
             return
 
         try:
-            budget_service.create_user(username, password)
+            user_service.create_user(username, password)
             self._handle_register()
         except (UserExistsError, InvalidCredentialsError) as e:
             self._show_error(e)

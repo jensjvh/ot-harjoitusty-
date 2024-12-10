@@ -1,6 +1,5 @@
 from tkinter import ttk, constants, StringVar
-from services.budget_service import budget_service, InvalidCredentialsError
-
+from services.user_service import user_service, InvalidCredentialsError
 
 class LoginView:
     """
@@ -43,7 +42,7 @@ class LoginView:
             return
 
         try:
-            budget_service.login(username, password)
+            user_service.login(username, password)
             self._handle_login()
         except InvalidCredentialsError as e:
             self._show_error(e)

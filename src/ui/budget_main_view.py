@@ -1,5 +1,8 @@
-from tkinter import ttk, constants, Toplevel
+from tkinter import ttk, constants, Toplevel, StringVar
 from services.budget_service import budget_service
+from services.user_service import user_service
+
+import datetime
 
 
 class BudgetMainView:
@@ -8,11 +11,13 @@ class BudgetMainView:
     def __init__(self, root, handle_logout):
         self._root = root
         self._handle_logout = handle_logout
-        self._user = budget_service.get_current_user()
+        self._user = user_service.get_current_user()
         self._frame = None
         self._create_budget = None
         self._budget_main_frame = None
         self._frame = None
+        self._error_variable = None
+        self._error_label = None
 
         self._initialize()
 
@@ -23,9 +28,16 @@ class BudgetMainView:
     def destroy(self):
         """Destroy the login view."""
         self._frame.destroy()
+    
+    def _show_error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
 
     def _logout_handler(self):
-        budget_service.logout()
+        user_service.logout()
         self._handle_logout()
 
     def _handle_create_budget(self):
@@ -76,6 +88,15 @@ class BudgetMainView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground='red'
+        )
+        self._error_label.grid(row=0, column=1, padx=10, pady=10)
+
         self._budget_frame = ttk.Frame(master=self._frame)
 
         self._add_heading_label()
@@ -98,36 +119,55 @@ class BudgetMainView:
             row=2, column=0, padx=5, pady=10, sticky=constants.EW)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
+    
+    def _validate_input(self, amount: float, date: str):
+        try:
+            float(amount)
+            datetime.date.fromisoformat(date)
+        except (TypeError, ValueError):
+            raise TypeError(f"Invalid input")
 
     def _open_create_budget_view(self):
         """Open the view for creating a new budget."""
         create_budget_window = Toplevel(self._root)
         create_budget_window.title("Create Budget")
 
-        amount_label = ttk.Label(create_budget_window, text="Amount:")
+        amount_label = ttk.Label(create_budget_window, text="Amount (eg. 2.5):")
         amount_label.grid(row=0, column=0, padx=10, pady=5)
-        amount_entry = ttk.Entry(create_budget_window)
+        amount_entry = ttk.Entry(create_budget_window, width=30)
         amount_entry.grid(row=0, column=1, padx=10, pady=5)
 
         category_label = ttk.Label(create_budget_window, text="Category:")
         category_label.grid(row=1, column=0, padx=10, pady=5)
-        category_entry = ttk.Entry(create_budget_window)
+        category_entry = ttk.Entry(create_budget_window, width=30)
         category_entry.grid(row=1, column=1, padx=10, pady=5)
 
-        date_label = ttk.Label(create_budget_window, text="Date:")
+        date_label = ttk.Label(create_budget_window, text="Date (YYYY-MM-DD):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
-        date_entry = ttk.Entry(create_budget_window)
+        date_entry = ttk.Entry(create_budget_window, width=30)
         date_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        error_label = ttk.Label(create_budget_window, text="", foreground="red")
+        error_label.grid(row=4, column=0, columnspan=2, padx=10, pady=5, sticky=constants.SW)
 
         def new_budget():
             amount = amount_entry.get()
             category = category_entry.get()
             date = date_entry.get()
 
-            budget_service.create_budget(amount, category, date)
+            try:
+                self._validate_input(amount, date)
+            except TypeError as e:
+                error_label.config(text=str(e))
+                return
+
+            try:
+                budget_service.create_budget(self._user, amount, category, date)
+            except Exception as e:
+                error_label.config(text=str(e))
+                return
 
             self.refresh_budget_list()
-
             create_budget_window.destroy()
 
         new_budget_button = ttk.Button(
@@ -139,7 +179,7 @@ class BudgetMainView:
         for row in self._budget_treeview.get_children():
             self._budget_treeview.delete(row)
 
-        budgets = budget_service.get_user_budgets()
+        budgets = budget_service.get_user_budgets(self._user)
 
         for budget in budgets:
             self._budget_treeview.insert(

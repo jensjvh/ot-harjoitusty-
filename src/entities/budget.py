@@ -3,7 +3,7 @@ class Budget:
     A class representing a Budget object of a user.
     """
 
-    def __init__(self, user, amount, category, date, budget_id=None):
+    def __init__(self, user: str, amount: float, category: str, date: str, budget_id=None):
         self._id = budget_id
         self._user = user
         self._amount = amount
@@ -29,8 +29,18 @@ class Budget:
     def add_income(self, income):
         self._amount += income
 
+    def __eq__(self, other):
+        if not isinstance(other, Budget):
+            return False
+        return (
+            self._user == other._user and
+            self._amount == other._amount and
+            self._category == other._category and
+            self._date == other._date
+        )
+
     def __repr__(self):
-        return f"Budget(id={self._id}, user='{self._user}',amount={self._amount}, category='{self._category}', date='{self._date}')"
+        return f"Budget({self._user}, {self._amount}, {self._category}, {self._date})"
 
     def to_tuple(self):
         """
