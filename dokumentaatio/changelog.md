@@ -26,3 +26,12 @@
 * Käyttäjä voi luoda uusia Budget-olioita pop-up valikolla BudgetMainViewissä.
 * Budget-olion alustava rakenne, joka toimii yksinkertaista tiedon tallettamista varten, sisältää budjetin määrän, kategorian ja päivämäärän.
 * Testejä BudgetRepository-luokalle.
+
+## Viikko 6
+
+### Lisäykset
+* UserService-luokka, joka vastaa käyttäjän toimintojen suorittamisesta.
+* Testejä uudelle luokalle.
+
+### Muutokset
+* Refaktoroitu BudgetService luokiksi BudgetService ja UserService.

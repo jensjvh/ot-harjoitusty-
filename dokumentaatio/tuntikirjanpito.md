@@ -9,4 +9,5 @@
 | 25.11. | 4    | Käyttöliittymän jatkoa, sovelluslogiikkaa rekistöitymiselle ja kirjautumiselle |
 | 26.11. | 4    | Alustava luokkakaavio, kirjautuminen ja rekisteröityminen toimivat. Toiminnallisuus liikkumiseen sovelluksen päänäkymän ja kirjautumisen välillä. |
 | 3.12. | 6    | Budget-olioon liittyvää toiminnallisuutta, mukaanlukien BudgetRepository, BudgetMainView, ja Budget-olioiden luominen tietokantaan. Sekvenssikaaviot kirjautumiseen ja rekisteröitymiseen. |
-| tunnit yhteensä | 24 |
+ 10.12. | 4    | Testien lisäystä, BudgetServicen refaktorointia, repositorion testaukseen muutos ja ympäristömuuttujat käyttöön. Dokumentaatiota. |
+| tunnit yhteensä | 28 |
