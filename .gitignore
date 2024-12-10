@@ -6,3 +6,4 @@ htmlcov
 .vscode
 
 data/database.sqlite
+data/test-database.sqlite
