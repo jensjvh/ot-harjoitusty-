@@ -1,5 +1,21 @@
 # Arkkitehtuurikuvaus
 
+## Pakkausrakenne
+
+```mermaid
+  graph LR
+    UI --> Services
+    Services --> Repositories
+    Repositories --> Entities
+    Services --> Entities
+```
+
+Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entities`. `UI` kerros kommunikoi `Services` kerroksen kanssa, `Services` `Repositories` ja `Entities` kanssa, sekä `Repositories` `Entities` kanssa.
+
+## Tietojen tallennus
+
+Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka tablet alustetaan tiedostossa `initialize_database.py`. Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty `.env`-tiedostossa.
+
 ## Sovelluslogiikka
 
 ```mermaid
