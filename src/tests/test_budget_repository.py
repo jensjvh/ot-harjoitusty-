@@ -6,7 +6,7 @@ from entities.budget import Budget
 class TestBudgetRepository(unittest.TestCase):
     def setUp(self):
         budget_repository.delete_all()
-        self.budget_test1 = Budget('test_user', 10, 'expense', '3.12.2024')
+        self.budget_test1 = Budget('test_user', 10, 'Expense', '3.12.2024')
 
     def tearDown(self):
         budget_repository.delete_all()

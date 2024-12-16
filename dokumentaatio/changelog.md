@@ -35,3 +35,10 @@
 
 ### Muutokset
 * Refaktoroitu BudgetService luokiksi BudgetService ja UserService.
+
+## Viikko 7
+
+### Lisäykset
+
+### Muutokset
+* Muutettu salasanat tietokannassa Argon2-hash salasanoiksi.
