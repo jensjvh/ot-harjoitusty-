@@ -37,7 +37,7 @@ class UserService:
         if len(password) < 8:
             raise InvalidCredentialsError(
                 "Password should be at least 8 characters long")
-        
+
         hashed_password = hash_password(password)
 
         user = self._user_repository.create(User(username, hashed_password))

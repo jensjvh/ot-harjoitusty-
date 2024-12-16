@@ -23,6 +23,8 @@ class BudgetRepository:
             (budget.user, budget.amount, budget.category, budget.date)
         )
 
+        self._connection.commit()
+
         return budget
 
     def find_all(self):

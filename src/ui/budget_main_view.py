@@ -5,6 +5,8 @@ from services.user_service import user_service
 import datetime
 
 
+BUDGET_CATEGORIES = ['Income', 'Expense']
+
 class BudgetMainView:
     """A class representing the main Budget overview view."""
 
@@ -140,8 +142,11 @@ class BudgetMainView:
 
         category_label = ttk.Label(create_budget_window, text="Category:")
         category_label.grid(row=1, column=0, padx=10, pady=5)
-        category_entry = ttk.Entry(create_budget_window, width=30)
-        category_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        category_variable = StringVar(create_budget_window)
+        category_variable.set(BUDGET_CATEGORIES[0])
+        category_menu = OptionMenu(create_budget_window, category_variable, *BUDGET_CATEGORIES)
+        category_menu.grid(row=1, column=1, padx=10, pady=5)
 
         date_label = ttk.Label(create_budget_window, text="Date (YYYY-MM-DD):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
@@ -155,7 +160,7 @@ class BudgetMainView:
 
         def new_budget():
             amount = amount_entry.get()
-            category = category_entry.get()
+            category = category_variable.get()
             date = date_entry.get()
 
             try:
