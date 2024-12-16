@@ -4,6 +4,9 @@ Repositorio sisältää Helsingin yliopiston **Ohjelmistotekniikka** -kurssin ha
 
 Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saada yhteenvetoja budjetista. Menoja ja tuloja voi asettaa eri kategorioihin, kuten ruoka, vapaa-aika, laskut.
 
+## Ulkoiset kirjastot
+* [Argon2](https://pypi.org/project/argon2-cffi/)
+
 ## Uusin release
 
 [Uusin release täällä](https://github.com/jensjvh/ot-harjoitustyo/releases/latest).

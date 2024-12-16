@@ -3,6 +3,8 @@ from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
 )
+from utils.password_utils import hash_password, verify_password
+
 
 class UserExistsError(Exception):
     pass
@@ -35,8 +37,10 @@ class UserService:
         if len(password) < 8:
             raise InvalidCredentialsError(
                 "Password should be at least 8 characters long")
+        
+        hashed_password = hash_password(password)
 
-        user = self._user_repository.create(User(username, password))
+        user = self._user_repository.create(User(username, hashed_password))
 
         if login:
             self._user = user
@@ -46,10 +50,20 @@ class UserService:
     def login(self, username, password):
         """
         Log the user in.
+
+        Parameters
+        ----------
+            username (str): String representing the username.
+            password (str): String representing the password.
         """
         user = self._user_repository.find_user(username)
 
-        if not user or user.password != password:
+        if not user:
+            raise InvalidCredentialsError("Invalid username or password")
+
+        hash_matches = verify_password(user.password_hash, password)
+
+        if not hash_matches:
             raise InvalidCredentialsError("Invalid username or password")
 
         self._user = user
@@ -64,5 +78,6 @@ class UserService:
 
     def get_current_user(self):
         return self._user
+
 
 user_service = UserService()

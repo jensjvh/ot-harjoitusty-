@@ -16,7 +16,7 @@ class TestBudgetRepository(unittest.TestCase):
         budgets = budget_repository.find_all()
 
         self.assertEqual(budgets[0].user, 'test_user')
-    
+
     def test_create_returns_budget(self):
         budget = budget_repository.create(self.budget_test1)
 

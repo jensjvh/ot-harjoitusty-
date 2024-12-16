@@ -5,6 +5,7 @@ from repositories.budget_repository import (
     budget_repository as default_budget_repository
 )
 
+
 class BudgetService:
     """
     A class representing the application logic of the app.
@@ -35,5 +36,6 @@ class BudgetService:
             return []
 
         return list(budgets)
+
 
 budget_service = BudgetService()

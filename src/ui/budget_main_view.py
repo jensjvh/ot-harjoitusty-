@@ -28,7 +28,7 @@ class BudgetMainView:
     def destroy(self):
         """Destroy the login view."""
         self._frame.destroy()
-    
+
     def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()
@@ -119,7 +119,7 @@ class BudgetMainView:
             row=2, column=0, padx=5, pady=10, sticky=constants.EW)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
-    
+
     def _validate_input(self, amount: float, date: str):
         try:
             float(amount)
@@ -132,7 +132,8 @@ class BudgetMainView:
         create_budget_window = Toplevel(self._root)
         create_budget_window.title("Create Budget")
 
-        amount_label = ttk.Label(create_budget_window, text="Amount (eg. 2.5):")
+        amount_label = ttk.Label(create_budget_window,
+                                 text="Amount (eg. 2.5):")
         amount_label.grid(row=0, column=0, padx=10, pady=5)
         amount_entry = ttk.Entry(create_budget_window, width=30)
         amount_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -147,8 +148,10 @@ class BudgetMainView:
         date_entry = ttk.Entry(create_budget_window, width=30)
         date_entry.grid(row=2, column=1, padx=10, pady=5)
 
-        error_label = ttk.Label(create_budget_window, text="", foreground="red")
-        error_label.grid(row=4, column=0, columnspan=2, padx=10, pady=5, sticky=constants.SW)
+        error_label = ttk.Label(create_budget_window,
+                                text="", foreground="red")
+        error_label.grid(row=4, column=0, columnspan=2,
+                         padx=10, pady=5, sticky=constants.SW)
 
         def new_budget():
             amount = amount_entry.get()
@@ -162,7 +165,8 @@ class BudgetMainView:
                 return
 
             try:
-                budget_service.create_budget(self._user, amount, category, date)
+                budget_service.create_budget(
+                    self._user, amount, category, date)
             except Exception as e:
                 error_label.config(text=str(e))
                 return

@@ -1,6 +1,7 @@
 from tkinter import ttk, constants, StringVar
 from services.user_service import user_service, InvalidCredentialsError
 
+
 class LoginView:
     """
     A class representing the login view of the app.

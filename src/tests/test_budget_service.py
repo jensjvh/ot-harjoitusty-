@@ -19,17 +19,20 @@ class TestBudgetService(unittest.TestCase):
         category = "Income"
         date = "2000-01-01"
 
-        expected_budget = Budget(self.user_test1.username, amount, category, date)
-        created_budget = budget_service.create_budget(self.user_test1, amount, category, date)
-        
+        expected_budget = Budget(
+            self.user_test1.username, amount, category, date)
+        created_budget = budget_service.create_budget(
+            self.user_test1, amount, category, date)
+
         self.assertEqual(created_budget, expected_budget)
-    
+
     def test_get_user_budgets(self):
         amount = 10
         category = "Income"
         date = "2000-01-01"
 
-        expected_budgets = [Budget(self.user_test1.username, amount, category, date)]
+        expected_budgets = [
+            Budget(self.user_test1.username, amount, category, date)]
         result_budgets = budget_service.get_user_budgets(self.user_test1)
 
         self.assertEqual(result_budgets, expected_budgets)

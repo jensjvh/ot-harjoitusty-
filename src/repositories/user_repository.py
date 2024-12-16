@@ -21,7 +21,7 @@ class UserRepository:
 
         rows = cursor.fetchall()
 
-        return [User(row["username"], row["password"]) for row in rows]
+        return [User(row["username"], row["password_hash"]) for row in rows]
 
     def find_user(self, username):
         """
@@ -37,7 +37,7 @@ class UserRepository:
         result = cursor.fetchone()
 
         if result:
-            return User(result["username"], result["password"])
+            return User(result["username"], result["password_hash"])
         return None
 
     def create(self, user):
@@ -54,8 +54,8 @@ class UserRepository:
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "insert into users (username, password) values (?, ?)",
-            (user.username, user.password)
+            "insert into users (username, password_hash) values (?, ?)",
+            (user.username, user.password_hash)
         )
 
         self._connection.commit()
