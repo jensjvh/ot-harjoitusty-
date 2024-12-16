@@ -7,6 +7,7 @@ import datetime
 
 BUDGET_CATEGORIES = ['Income', 'Expense']
 
+
 class BudgetMainView:
     """A class representing the main Budget overview view."""
 
@@ -145,7 +146,8 @@ class BudgetMainView:
 
         category_variable = StringVar(create_budget_window)
         category_variable.set(BUDGET_CATEGORIES[0])
-        category_menu = OptionMenu(create_budget_window, category_variable, *BUDGET_CATEGORIES)
+        category_menu = OptionMenu(
+            create_budget_window, category_variable, *BUDGET_CATEGORIES)
         category_menu.grid(row=1, column=1, padx=10, pady=5)
 
         date_label = ttk.Label(create_budget_window, text="Date (YYYY-MM-DD):")
