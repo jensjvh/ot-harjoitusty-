@@ -21,12 +21,14 @@ class BudgetMainView:
         self._frame = None
         self._error_variable = None
         self._error_label = None
+        self._income_label = None
 
         self._initialize()
 
     def pack(self):
         """Display the main budget view."""
         self._frame.grid(row=0, column=0, sticky=constants.NSEW)
+        self.refresh_budget_list()
 
     def destroy(self):
         """Destroy the login view."""
@@ -65,7 +67,7 @@ class BudgetMainView:
             column=1,
             padx=5,
             pady=5,
-            sticky=constants.EW
+            sticky=constants.W
         )
 
     def _add_budget_overview(self):
@@ -120,6 +122,11 @@ class BudgetMainView:
         )
         create_budget_button.grid(
             row=2, column=0, padx=5, pady=10, sticky=constants.EW)
+
+        self._income_label = ttk.Label(
+            self._frame, text="Total Income - Total Expenses: 0 €")
+        self._income_label.grid(row=3, column=0, padx=5,
+                                pady=10, sticky=constants.W)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
 
@@ -186,7 +193,9 @@ class BudgetMainView:
         new_budget_button.grid(row=3, column=0, columnspan=2, pady=10)
 
     def refresh_budget_list(self):
-        """Update the budget list."""
+        total_income = 0
+        total_expense = 0
+
         for row in self._budget_treeview.get_children():
             self._budget_treeview.delete(row)
 
@@ -195,4 +204,14 @@ class BudgetMainView:
         for budget in budgets:
             self._budget_treeview.insert(
                 "", "end", values=(budget.amount, budget.category, budget.date)
+            )
+
+            if budget.category == 'Income':
+                total_income += float(budget.amount)
+            elif budget.category == 'Expense':
+                total_expense += float(budget.amount)
+
+        if self._income_label:
+            self._income_label.config(
+                text=f"Total Income - Total Expenses: {total_income - total_expense:.2f} €"
             )
