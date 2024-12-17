@@ -16,7 +16,8 @@ Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja.
 - [x] Käyttäjä voi syöttää tulot ja menot kategorioittain.
   - [ ] Käyttäjä voi valita kustannusluokan (esim. asuminen, ruoka, vapaa-aika).
   - [x] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
-- [ ] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
+- [x] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
+- [x] Käyttäjä näkee kuvaajasta tulot ja menot eri päiville.
 
 
 
