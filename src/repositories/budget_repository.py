@@ -27,6 +27,14 @@ class BudgetRepository:
 
         return budget
 
+    def delete_budget(self, username, amount, category, date):
+        cursor = self._connection.cursor()
+        cursor.execute('''
+            DELETE FROM budgets
+            WHERE user = ? AND amount = ? AND category = ? AND date = ?
+        ''', (username, amount, category, date))
+        self._connection.commit()
+
     def find_all(self):
         cursor = self._connection.cursor()
 

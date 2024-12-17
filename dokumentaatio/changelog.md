@@ -39,6 +39,8 @@
 ## Viikko 7
 
 ### Lisäykset
+* Tunnusluku sovelluksen päänäkymään, josta käyttäjä näkee kokonaistulojensa ja kokonaismenojensa erotuksen.
+* Kuvaaja sovelluksen päänäkymään, josta käyttäjä näkee omat tulonsa ja menonsa.
 
 ### Muutokset
 * Muutettu salasanat tietokannassa Argon2-hash salasanoiksi.

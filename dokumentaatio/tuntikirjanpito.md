@@ -11,4 +11,5 @@
 | 3.12. | 6    | Budget-olioon liittyvää toiminnallisuutta, mukaanlukien BudgetRepository, BudgetMainView, ja Budget-olioiden luominen tietokantaan. Sekvenssikaaviot kirjautumiseen ja rekisteröitymiseen. |
  10.12. | 4    | Testien lisäystä, BudgetServicen refaktorointia, repositorion testaukseen muutos ja ympäristömuuttujat käyttöön. Dokumentaatiota. |
 | 16.12. | 4   | Muutettu salasanat tietokannassa Argon2-hash salasanoiksi. Testejä UserService-luokalle. Lisätty tekstinäkymä, josta käyttäjä näkee kokonaistulot josta on vähennetty kokonaismenot.|
-| tunnit yhteensä | 32 |
+| 17.12. | 5    | Kuvaaja budjettinäkymään, josta näkee tulojen ja menojen käyrät. Muutoksia kirjautumisen ja rekisteröitymisen ulkonäköön.
+| tunnit yhteensä | 37 |

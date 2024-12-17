@@ -97,7 +97,7 @@ class LoginView:
             command=self._handle_show_register_view
         )
 
-        self._frame.grid_columnconfigure(1, weight=1, minsize=1020)
+        self._frame.grid_columnconfigure(1, weight=1, minsize=600)
 
         login_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
         register_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)

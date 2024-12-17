@@ -23,6 +23,10 @@ class BudgetService:
                         date=date)
 
         return self._budget_repository.create(budget)
+    
+    def delete_budget(self, username, amount, category, date):
+        """Delete a budget with given values."""
+        self._budget_repository.delete_budget(username, amount, category, date)
 
     def get_user_budgets(self, user):
         """Return a list of all budget objects of a user."""
