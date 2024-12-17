@@ -17,7 +17,7 @@ class TestBudgetService(unittest.TestCase):
     def test_create_budget(self):
         amount = 10
         category = "Income"
-        date = "2000-01-01"
+        date = "01.01.2024"
 
         expected_budget = Budget(
             self.user_test1.username, amount, category, date)
@@ -29,7 +29,7 @@ class TestBudgetService(unittest.TestCase):
     def test_get_user_budgets(self):
         amount = 10
         category = "Income"
-        date = "2000-01-01"
+        date = "01.01.2024"
 
         expected_budgets = [
             Budget(self.user_test1.username, amount, category, date)]

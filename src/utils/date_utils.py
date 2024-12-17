@@ -1,7 +1,7 @@
 import datetime
 
 
-DATE_FORMAT = '%Y-%m-%d'
+DATE_FORMAT = '%d.%m.%Y'
 
 
 def convert_to_datetime(date_string: str) -> datetime.datetime:

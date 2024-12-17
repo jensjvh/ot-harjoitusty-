@@ -172,7 +172,7 @@ class BudgetMainView:
             create_budget_window, category_variable, *BUDGET_CATEGORIES)
         category_menu.grid(row=1, column=1, padx=10, pady=5)
 
-        date_label = ttk.Label(create_budget_window, text="Date (YYYY-MM-DD):")
+        date_label = ttk.Label(create_budget_window, text="Date (DD.MM.YYYY):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
         date_entry = ttk.Entry(create_budget_window, width=30)
         date_entry.grid(row=2, column=1, padx=10, pady=5)
@@ -288,7 +288,7 @@ class BudgetMainView:
                 label='Expense', color='red', marker='o')
 
         ax.xaxis.set_major_locator(mdates.DayLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
         fig.autofmt_xdate()
 
         ax.set_xticks(ax.get_xticks())
