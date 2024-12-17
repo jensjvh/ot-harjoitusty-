@@ -124,11 +124,11 @@ class BudgetMainView:
         )
         create_budget_button.grid(
             row=2, column=0, padx=5, pady=2, sticky=constants.EW)
-        
+
         delete_budget_button = ttk.Button(
-        master=self._frame,
-        text="Delete Selected Budget",
-        command=self._handle_delete_budget
+            master=self._frame,
+            text="Delete Selected Budget",
+            command=self._handle_delete_budget
         )
         delete_budget_button.grid(
             row=3, column=0, padx=5, pady=2, sticky=constants.EW)
@@ -154,7 +154,8 @@ class BudgetMainView:
         """Open the view for creating a new budget."""
         create_budget_window = Toplevel(self._root)
         create_budget_window.title("Create Budget")
-        create_budget_window.protocol("WM_DELETE_WINDOW", create_budget_window.destroy)
+        create_budget_window.protocol(
+            "WM_DELETE_WINDOW", create_budget_window.destroy)
 
         amount_label = ttk.Label(create_budget_window,
                                  text="Amount (eg. 2.5):")
@@ -205,8 +206,7 @@ class BudgetMainView:
         new_budget_button = ttk.Button(
             create_budget_window, text="Create", command=new_budget)
         new_budget_button.grid(row=3, column=0, columnspan=2, pady=10)
-    
-    
+
     def _delete_budget(self):
         selected_item = self._budget_treeview.selection()
         if not selected_item:
@@ -220,7 +220,8 @@ class BudgetMainView:
         budget_date = budget_values[2]
 
         try:
-            budget_service.delete_budget(self._user.username, budget_amount, budget_category, budget_date)
+            budget_service.delete_budget(
+                self._user.username, budget_amount, budget_category, budget_date)
             self.refresh_budget_list()
         except Exception as e:
             self._show_error(str(e))
@@ -273,7 +274,7 @@ class BudgetMainView:
                     expense_dict[date] += amount
                 else:
                     expense_dict[date] = amount
-        
+
         income_dates = sorted(income_dict.keys())
         income_amounts = [income_dict[date] for date in income_dates]
 
@@ -281,8 +282,10 @@ class BudgetMainView:
         expense_amounts = [expense_dict[date] for date in expense_dates]
 
         fig, ax = plt.subplots(figsize=(5, 4))
-        ax.plot(income_dates, income_amounts, label='Income', color='green', marker='o')
-        ax.plot(expense_dates, expense_amounts, label='Expense', color='red', marker='o')
+        ax.plot(income_dates, income_amounts,
+                label='Income', color='green', marker='o')
+        ax.plot(expense_dates, expense_amounts,
+                label='Expense', color='red', marker='o')
 
         ax.xaxis.set_major_locator(mdates.DayLocator())
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
@@ -303,4 +306,5 @@ class BudgetMainView:
 
         self._canvas = FigureCanvasTkAgg(fig, master=self._frame)
         self._canvas.draw()
-        self._canvas.get_tk_widget().grid(row=1, column=2, padx=10, pady=10, sticky=constants.NSEW)
+        self._canvas.get_tk_widget().grid(row=1, column=2, padx=10,
+                                          pady=10, sticky=constants.NSEW)
