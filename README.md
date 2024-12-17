@@ -6,6 +6,7 @@ Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saa
 
 ## Ulkoiset kirjastot
 * [Argon2](https://pypi.org/project/argon2-cffi/)
+* [Matplotlib](https://matplotlib.org/)
 
 ## Uusin release
 
