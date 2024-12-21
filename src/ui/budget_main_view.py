@@ -90,17 +90,19 @@ class BudgetMainView:
         """Add a budget overview table using Treeview."""
         self._budget_treeview = ttk.Treeview(
             master=self._budget_frame,
-            columns=("Amount", "Category", "Date"),
+            columns=("Amount", "Category", "Date", "Tag"),
             show="headings",
         )
 
         self._budget_treeview.heading("Amount", text="Amount")
         self._budget_treeview.heading("Category", text="Category")
         self._budget_treeview.heading("Date", text="Date")
+        self._budget_treeview.heading("Tag", text="Tag")
 
-        self._budget_treeview.column("Amount", width=150, anchor="e")
-        self._budget_treeview.column("Category", width=150, anchor="w")
-        self._budget_treeview.column("Date", width=150, anchor="w")
+        self._budget_treeview.column("Amount", width=100, anchor="e")
+        self._budget_treeview.column("Category", width=100, anchor="w")
+        self._budget_treeview.column("Date", width=100, anchor="w")
+        self._budget_treeview.column("Tag", width=100, anchor="w")
 
         self.refresh_budget_list()
 
@@ -197,8 +199,13 @@ class BudgetMainView:
         date_label = ttk.Label(create_budget_window, text="Date (DD.MM.YYYY):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
         date_entry = DateEntry(create_budget_window,
-                               width=30, date_pattern='dd.mm.yyyy')
+                               width=29, date_pattern='dd.mm.yyyy')
         date_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        tag_label = ttk.Label(create_budget_window, text="Tag:")
+        tag_label.grid(row=3, column=0, padx=10, pady=5)
+        tag_entry = ttk.Entry(create_budget_window, width=30)
+        tag_entry.grid(row=3, column=1, padx=10, pady=5)
 
         error_label = ttk.Label(create_budget_window,
                                 text="", foreground="red")
@@ -209,6 +216,7 @@ class BudgetMainView:
             amount = amount_entry.get()
             category = category_variable.get()
             date = date_entry.get()
+            tag = tag_entry.get()
 
             try:
                 self._validate_input(amount, date)
@@ -218,7 +226,7 @@ class BudgetMainView:
 
             try:
                 budget_service.create_budget(
-                    self._user, amount, category, date)
+                    self._user, amount, category, date, tag)
             except Exception as e:
                 error_label.config(text=str(e))
                 return
@@ -228,7 +236,7 @@ class BudgetMainView:
 
         new_budget_button = ttk.Button(
             create_budget_window, text="Create", command=new_budget)
-        new_budget_button.grid(row=3, column=0, columnspan=2, pady=10)
+        new_budget_button.grid(row=4, column=0, columnspan=2, pady=10)
 
     def _delete_budget(self):
         selected_item = self._budget_treeview.selection()
@@ -237,7 +245,7 @@ class BudgetMainView:
             return
 
         item = self._budget_treeview.item(selected_item)
-        budget_id = item['values'][3]
+        budget_id = item['values'][4]
 
         try:
             budget_service.delete_budget_by_id(budget_id)

@@ -14,13 +14,14 @@ class BudgetService:
     def __init__(self, budget_repository=default_budget_repository):
         self._budget_repository = budget_repository
 
-    def create_budget(self, user: User, amount: float, category: str, date: str):
+    def create_budget(self, user: User, amount: float, category: str, date: str, tag: str = None):
         """Create and return a new budget object."""
 
         budget = Budget(user=user.username,
                         amount=amount,
                         category=category,
-                        date=date)
+                        date=date,
+                        tag=tag)
 
         return self._budget_repository.create(budget)
 

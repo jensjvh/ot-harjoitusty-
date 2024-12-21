@@ -3,12 +3,18 @@ class Budget:
     A class representing a Budget object of a user.
     """
 
-    def __init__(self, user: str, amount: float, category: str, date: str, budget_id=None):
+    def __init__(self, user: str,
+                 amount: float,
+                 category: str,
+                 date: str,
+                 tag: str = None,
+                 budget_id: int = None):
         self._id = budget_id
         self._user = user
         self._amount = amount
         self._category = category
         self._date = date
+        self._tag = tag
 
     @property
     def id(self):
@@ -30,6 +36,10 @@ class Budget:
     def date(self):
         return self._date
 
+    @property
+    def tag(self):
+        return self._tag
+
     def add_income(self, income):
         self._amount += income
 
@@ -44,11 +54,11 @@ class Budget:
         )
 
     def __repr__(self):
-        return f"Budget({self._user}, {self._amount}, {self._category}, {self._date})"
+        return f"Budget({self._user}, {self._amount}, {self._category}, {self._date}, {self._tag})"
 
     def to_tuple(self):
         """
         Convert class instance to a tuple for easier database insertion.
         """
 
-        return (self._user, self._amount, self._category, self._date)
+        return (self._user, self._amount, self._category, self._date, self._tag)

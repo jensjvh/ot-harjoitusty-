@@ -19,15 +19,20 @@ class BudgetRepository:
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "insert into budgets (user, amount, category, date) values (?, ?, ?, ?)",
-            (budget.user, budget.amount, budget.category, budget.date)
+            "insert into budgets (user, amount, category, date, tag) values (?, ?, ?, ?, ?)",
+            (budget.user, budget.amount, budget.category, budget.date, budget.tag)
         )
 
         self._connection.commit()
 
         budget_id = cursor.lastrowid
 
-        return Budget(budget.user, budget.amount, budget.category, budget.date, budget_id)
+        return Budget(budget.user,
+                      budget.amount,
+                      budget.category,
+                      budget.date,
+                      budget.tag,
+                      budget_id)
 
     def delete_budget_by_id(self, budget_id):
         cursor = self._connection.cursor()
@@ -62,6 +67,7 @@ class BudgetRepository:
                            row["amount"],
                            row["category"],
                            row["date"],
+                           row["tag"],
                            row["id"]) for row in rows]
         return None
 

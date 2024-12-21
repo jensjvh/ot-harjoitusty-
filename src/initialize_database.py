@@ -47,6 +47,7 @@ def create_tables(connection):
                    amount real,
                    category text,
                    date text,
+                   tag text,
                    foreign key (user) references users (username)
                    );
                 ''')
