@@ -30,6 +30,17 @@ class BudgetMainView:
 
     def pack(self):
         """Display the main budget view."""
+        view_width = 1050
+        view_height = 700
+
+        screen_width = self._root.winfo_screenwidth()
+        screen_height = self._root.winfo_screenheight()
+
+        position_x = (screen_width - view_width) // 2
+        position_y = (screen_height - view_height) // 2
+
+        self._root.geometry(f"{view_width}x{view_height}+{position_x}+{position_y}")
+
         self._frame.grid(row=0, column=0, sticky=constants.NSEW)
         self.refresh_budget_list()
 
