@@ -159,9 +159,7 @@ class BudgetMainView:
     def _validate_input(self, amount: float, date: str):
         try:
             float(amount)
-            date_obj = convert_to_datetime(date)
-            if not validate_year(date_obj):
-                raise ValueError("Date must be between 2010 and the current year")
+            convert_to_datetime(date)
         except (TypeError, ValueError) as e:
             raise TypeError(str(e))
 
