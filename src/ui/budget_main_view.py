@@ -1,3 +1,4 @@
+from datetime import datetime
 from tkinter import ttk, constants, Toplevel, StringVar, OptionMenu
 from tkcalendar import DateEntry
 from services.budget_service import budget_service
@@ -156,9 +157,13 @@ class BudgetMainView:
 
         self._add_graph()
 
-    def _validate_input(self, amount: float, date: str):
+    def _validate_input(self, amount: str, date: str):
         try:
-            float(amount)
+            float_amount = float(amount)
+            if float_amount <= 0:
+                raise ValueError("Amount must be greater than 0")
+            if '.' in str(amount) and len(str(amount).split('.')[1]) > 2:
+                raise ValueError("Amount must not have more than two decimal places")
         except ValueError:
             raise ValueError("Invalid amount")
         try:
@@ -270,7 +275,7 @@ class BudgetMainView:
         self._add_graph()
 
     def _add_graph(self):
-        """Add a graph to visualize expenses and incomes."""
+        """Add a graph to visualize expenses and income."""
         budgets = budget_service.get_user_budgets(self._user)
 
         income_dict = {}
@@ -314,7 +319,7 @@ class BudgetMainView:
 
         ax.set_xlabel('Date')
         ax.set_ylabel('Amount')
-        ax.set_title('Income and Expense Over Time')
+        ax.set_title('Income and Expenses Over Time')
         ax.legend()
 
         plt.tight_layout()
