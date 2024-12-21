@@ -10,7 +10,7 @@ Sovelluksella käyttäjät voivat pitää kirjaa menoista ja tuloista, sekä saa
 
 ## Uusin release
 
-[Uusin release täällä](https://github.com/jensjvh/ot-harjoitustyo/releases/latest).
+Uusin release [täällä](https://github.com/jensjvh/ot-harjoitustyo/releases/latest).
 
 ## Dokumentaatio
 
