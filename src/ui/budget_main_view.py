@@ -164,9 +164,11 @@ class BudgetMainView:
             float_amount = float(amount)
             if float_amount <= 0:
                 raise ValueError("Amount must be greater than 0")
+            # generoitu koodi alkaa
             if '.' in str(amount) and len(str(amount).split('.')[1]) > 2:
                 raise ValueError(
                     "Amount must not have more than two decimal places")
+            # generoitu koodi päättyy
         except ValueError:
             raise ValueError("Invalid amount")
         try:
@@ -178,8 +180,10 @@ class BudgetMainView:
         """Open the view for creating a new budget."""
         create_budget_window = Toplevel(self._root)
         create_budget_window.title("Create Budget")
+        # generoitu koodi alkaa
         create_budget_window.protocol(
             "WM_DELETE_WINDOW", create_budget_window.destroy)
+        # generoitu koodi päättyy
 
         amount_label = ttk.Label(create_budget_window,
                                  text="Amount (eg. 2.5):")

@@ -17,12 +17,14 @@ def main():
     ui_view = UI(window)
     ui_view.start()
 
+    # generoitu koodi alkaa
     def on_closing():
         print("Exiting Budgeting App...")
         window.quit()
         window.destroy()
 
     window.protocol("WM_DELETE_WINDOW", on_closing)
+    # generoitu koodi päättyy
 
     window.mainloop()
 
