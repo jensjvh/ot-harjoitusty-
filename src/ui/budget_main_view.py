@@ -159,9 +159,12 @@ class BudgetMainView:
     def _validate_input(self, amount: float, date: str):
         try:
             float(amount)
+        except ValueError:
+            raise ValueError("Invalid amount")
+        try:
             convert_to_datetime(date)
-        except (TypeError, ValueError) as e:
-            raise TypeError(str(e))
+        except ValueError:
+            raise ValueError("Invalid date format")
 
     def _open_create_budget_view(self):
         """Open the view for creating a new budget."""
@@ -187,8 +190,6 @@ class BudgetMainView:
 
         date_label = ttk.Label(create_budget_window, text="Date (DD.MM.YYYY):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
-        # date_entry = ttk.Entry(create_budget_window, width=30)
-        # date_entry.grid(row=2, column=1, padx=10, pady=5)
         date_entry = DateEntry(create_budget_window,
                                width=30, date_pattern='dd.mm.yyyy')
         date_entry.grid(row=2, column=1, padx=10, pady=5)
@@ -205,7 +206,7 @@ class BudgetMainView:
 
             try:
                 self._validate_input(amount, date)
-            except TypeError as e:
+            except ValueError as e:
                 error_label.config(text=str(e))
                 return
 
