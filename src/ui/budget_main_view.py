@@ -1,4 +1,5 @@
 from tkinter import ttk, constants, Toplevel, StringVar, OptionMenu
+from tkcalendar import DateEntry
 from services.budget_service import budget_service
 from services.user_service import user_service
 from utils.date_utils import convert_datetime_to_string, convert_to_datetime
@@ -39,7 +40,8 @@ class BudgetMainView:
         position_x = (screen_width - view_width) // 2
         position_y = (screen_height - view_height) // 2
 
-        self._root.geometry(f"{view_width}x{view_height}+{position_x}+{position_y}")
+        self._root.geometry(
+            f"{view_width}x{view_height}+{position_x}+{position_y}")
 
         self._frame.grid(row=0, column=0, sticky=constants.NSEW)
         self.refresh_budget_list()
@@ -185,7 +187,10 @@ class BudgetMainView:
 
         date_label = ttk.Label(create_budget_window, text="Date (DD.MM.YYYY):")
         date_label.grid(row=2, column=0, padx=10, pady=5)
-        date_entry = ttk.Entry(create_budget_window, width=30)
+        # date_entry = ttk.Entry(create_budget_window, width=30)
+        # date_entry.grid(row=2, column=1, padx=10, pady=5)
+        date_entry = DateEntry(create_budget_window,
+                               width=30, date_pattern='dd.mm.yyyy')
         date_entry.grid(row=2, column=1, padx=10, pady=5)
 
         error_label = ttk.Label(create_budget_window,
