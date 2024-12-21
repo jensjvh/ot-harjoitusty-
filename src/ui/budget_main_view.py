@@ -2,7 +2,7 @@ from tkinter import ttk, constants, Toplevel, StringVar, OptionMenu
 from tkcalendar import DateEntry
 from services.budget_service import budget_service
 from services.user_service import user_service
-from utils.date_utils import convert_datetime_to_string, convert_to_datetime
+from utils.date_utils import convert_to_datetime
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -159,9 +159,11 @@ class BudgetMainView:
     def _validate_input(self, amount: float, date: str):
         try:
             float(amount)
-            convert_to_datetime(date)
-        except (TypeError, ValueError):
-            raise TypeError(f"Invalid input")
+            date_obj = convert_to_datetime(date)
+            if not validate_year(date_obj):
+                raise ValueError("Date must be between 2010 and the current year")
+        except (TypeError, ValueError) as e:
+            raise TypeError(str(e))
 
     def _open_create_budget_view(self):
         """Open the view for creating a new budget."""
@@ -303,7 +305,8 @@ class BudgetMainView:
         ax.plot(expense_dates, expense_amounts,
                 label='Expense', color='red', marker='o')
 
-        ax.xaxis.set_major_locator(mdates.DayLocator())
+        # AutoDateLocator used so the app does not crash if points are too far apart
+        ax.xaxis.set_major_locator(mdates.AutoDateLocator())
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
         fig.autofmt_xdate()
 
