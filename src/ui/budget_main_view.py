@@ -4,6 +4,7 @@ from tkcalendar import DateEntry
 from services.budget_service import budget_service
 from services.user_service import user_service
 from utils.date_utils import convert_to_datetime
+from ui.budget_details_view import BudgetDetailsView
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -70,6 +71,17 @@ class BudgetMainView:
 
     def _handle_delete_budget(self):
         self._delete_budget()
+
+    def _handle_show_details_view(self):
+        self.destroy()
+        details_view = BudgetDetailsView(
+            self._root, self._handle_back_to_main_view)
+        details_view.pack()
+
+    def _handle_back_to_main_view(self):
+        self.destroy()
+        self._initialize()
+        self.pack()
 
     def _add_heading_label(self):
         user_label = ttk.Label(
@@ -148,6 +160,15 @@ class BudgetMainView:
         )
         delete_budget_button.grid(
             row=3, column=0, padx=5, pady=2, sticky=constants.EW)
+
+        show_details_button = ttk.Button(
+            master=self._frame,
+            text="Show details",
+            command=self._handle_show_details_view
+        )
+
+        show_details_button.grid(
+            row=2, column=1, padx=5, pady=2, sticky=constants.EW)
 
         self._income_label = ttk.Label(
             self._frame, text="Total Income - Total Expenses: 0 €")
@@ -268,7 +289,7 @@ class BudgetMainView:
 
         for budget in budgets:
             self._budget_treeview.insert(
-                "", "end", values=(budget.amount, budget.category, budget.date, budget.id)
+                "", "end", values=(budget.amount, budget.category, budget.date, budget.tag)
             )
 
             if budget.category == 'Income':
@@ -277,9 +298,10 @@ class BudgetMainView:
                 total_expense += float(budget.amount)
 
         if self._income_label:
-            self._income_label.config(
-                text=f"Total Income - Total Expenses: {total_income - total_expense:.2f} €"
-            )
+            if self._income_label.winfo_exists():
+                self._income_label.config(
+                    text=f"Total Income - Total Expenses: {total_income - total_expense:.2f} €"
+                )
 
         self._add_graph()
 

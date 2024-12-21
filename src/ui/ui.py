@@ -1,6 +1,7 @@
 from ui.login_view import LoginView
 from ui.register_view import RegisterView
 from ui.budget_main_view import BudgetMainView
+from ui.budget_details_view import BudgetDetailsView
 
 
 class UI:
@@ -35,6 +36,16 @@ class UI:
         self._hide_current_view()
 
         self._current_view = BudgetMainView(self._root, self._show_login_view)
+
+        self._current_view.pack()
+
+    def _show_budget_details_view(self):
+        self._hide_current_view()
+
+        self._current_view = BudgetDetailsView(
+            self._root,
+            self._show_budget_main_view
+        )
 
         self._current_view.pack()
 
