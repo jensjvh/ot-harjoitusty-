@@ -163,7 +163,8 @@ class BudgetMainView:
             if float_amount <= 0:
                 raise ValueError("Amount must be greater than 0")
             if '.' in str(amount) and len(str(amount).split('.')[1]) > 2:
-                raise ValueError("Amount must not have more than two decimal places")
+                raise ValueError(
+                    "Amount must not have more than two decimal places")
         except ValueError:
             raise ValueError("Invalid amount")
         try:
@@ -236,14 +237,10 @@ class BudgetMainView:
             return
 
         item = self._budget_treeview.item(selected_item)
-        budget_values = item['values']
-        budget_amount = budget_values[0]
-        budget_category = budget_values[1]
-        budget_date = budget_values[2]
+        budget_id = item['values'][3]
 
         try:
-            budget_service.delete_budget(
-                self._user.username, budget_amount, budget_category, budget_date)
+            budget_service.delete_budget_by_id(budget_id)
             self.refresh_budget_list()
         except Exception as e:
             self._show_error(str(e))
@@ -259,7 +256,7 @@ class BudgetMainView:
 
         for budget in budgets:
             self._budget_treeview.insert(
-                "", "end", values=(budget.amount, budget.category, budget.date)
+                "", "end", values=(budget.amount, budget.category, budget.date, budget.id)
             )
 
             if budget.category == 'Income':

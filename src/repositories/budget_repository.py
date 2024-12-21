@@ -25,14 +25,16 @@ class BudgetRepository:
 
         self._connection.commit()
 
-        return budget
+        budget_id = cursor.lastrowid
 
-    def delete_budget(self, username, amount, category, date):
+        return Budget(budget.user, budget.amount, budget.category, budget.date, budget_id)
+
+    def delete_budget_by_id(self, budget_id):
         cursor = self._connection.cursor()
         cursor.execute('''
             DELETE FROM budgets
-            WHERE user = ? AND amount = ? AND category = ? AND date = ?
-        ''', (username, amount, category, date))
+            WHERE id = ?
+        ''', (budget_id,))
         self._connection.commit()
 
     def find_all(self):
@@ -59,7 +61,8 @@ class BudgetRepository:
             return [Budget(row["user"],
                            row["amount"],
                            row["category"],
-                           row["date"]) for row in rows]
+                           row["date"],
+                           row["id"]) for row in rows]
         return None
 
     def delete_all(self):

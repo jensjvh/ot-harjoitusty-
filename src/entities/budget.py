@@ -11,6 +11,10 @@ class Budget:
         self._date = date
 
     @property
+    def id(self):
+        return self._id
+
+    @property
     def user(self):
         return self._user
 
