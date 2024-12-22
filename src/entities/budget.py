@@ -1,6 +1,15 @@
 class Budget:
     """
     A class representing a Budget object of a user.
+
+    Parameters
+    ----------
+        user(str): Username string.
+        amount(float): Amount of the budget.
+        category(str): A string of the budget category.
+        date(str): Date in string format.
+        tag(str|None): Tag in strong format, defaults to None.
+        budget_id(int|None): id of the budget, defaults to None.
     """
 
     def __init__(self, user: str,
@@ -39,9 +48,6 @@ class Budget:
     @property
     def tag(self):
         return self._tag
-
-    def add_income(self, income):
-        self._amount += income
 
     def __eq__(self, other):
         if not isinstance(other, Budget):

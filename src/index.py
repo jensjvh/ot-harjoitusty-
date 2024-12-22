@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import pathlib
 from ui.ui import UI
 
@@ -6,6 +7,9 @@ from ui.ui import UI
 def main():
     window = tk.Tk()
     window.title("Budgeting App")
+
+    style = ttk.Style()
+    style.theme_use("clam")
 
     window.resizable(False, False)
     img = tk.PhotoImage(file=pathlib.Path('src/ui/icons/icon.png'))

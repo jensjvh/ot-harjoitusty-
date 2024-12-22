@@ -14,12 +14,6 @@ class TestBudget(unittest.TestCase):
         self.budget_example = Budget(
             self.user_test1.username, amount, category, date, tag)
 
-    def test_add_income(self):
-        self.budget_example.add_income(10)
-        expected_amount = 20
-
-        self.assertEqual(self.budget_example.amount, expected_amount)
-
     def test_repr(self):
         expected_str = "Budget(test1, 10, Income, 01.01.2024, allowance)"
 
