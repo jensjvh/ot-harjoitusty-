@@ -4,7 +4,7 @@ import matplotlib.dates as mdates
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from services.budget_service import budget_service
 from services.user_service import user_service
-from utils.date_utils import convert_to_datetime
+from ui.build_graph import generate_budget_graph
 
 
 class BudgetDetailsView:
@@ -49,56 +49,10 @@ class BudgetDetailsView:
         budgets = budget_service.get_user_budgets(
             user_service.get_current_user())
 
-        income_dict = {}
-        expense_dict = {}
-
-        for budget in budgets:
-            date = convert_to_datetime(budget.date)
-            amount = budget.amount
-            category = budget.category
-
-            if category == 'Income':
-                if date in income_dict:
-                    income_dict[date] += amount
-                else:
-                    income_dict[date] = amount
-            elif category == 'Expense':
-                if date in expense_dict:
-                    expense_dict[date] += amount
-                else:
-                    expense_dict[date] = amount
-
-        income_dates = sorted(income_dict.keys())
-        income_amounts = [income_dict[date] for date in income_dates]
-
-        expense_dates = sorted(expense_dict.keys())
-        expense_amounts = [expense_dict[date] for date in expense_dates]
-
-        fig, ax = plt.subplots(figsize=(5, 4))
-        ax.plot(income_dates, income_amounts,
-                label='Income', color='green', marker='o')
-        ax.plot(expense_dates, expense_amounts,
-                label='Expense', color='red', marker='o')
-
-        ax.xaxis.set_major_locator(mdates.AutoDateLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
-        fig.autofmt_xdate()
-
-        ax.set_xticks(ax.get_xticks())
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
-
-        ax.set_xlabel('Date')
-        ax.set_ylabel('Amount')
-        ax.set_title('Income and Expenses Over Time')
-        ax.legend()
-
-        plt.tight_layout()
-
         if self._graph_canvas:
             self._graph_canvas.get_tk_widget().destroy()
 
-        self._graph_canvas = FigureCanvasTkAgg(fig, master=self._frame)
-        self._graph_canvas.draw()
+        self._graph_canvas = generate_budget_graph(budgets, self._frame)
         self._graph_canvas.get_tk_widget().grid(row=1, column=0, padx=5,
                                                 pady=5, sticky=constants.W)
 
