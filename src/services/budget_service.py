@@ -29,7 +29,7 @@ class BudgetService:
         """Delete a budget by its ID."""
         self._budget_repository.delete_budget_by_id(budget_id)
 
-    def get_user_budgets(self, user):
+    def get_user_budgets(self, user: User):
         """Return a list of all budget objects of a user."""
 
         if not user:

@@ -37,9 +37,9 @@ class TestBudgetService(unittest.TestCase):
 
         created_budget = budget_service.create_budget(
             self.user_test1, amount, category, date, tag)
-        
+
         budget_service.delete_budget_by_id(created_budget.id)
-        
+
         result_budgets = budget_service.get_user_budgets(self.user_test1)
         expected_budgets = []
 
