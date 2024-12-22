@@ -289,7 +289,7 @@ class BudgetMainView:
 
         for budget in budgets:
             self._budget_treeview.insert(
-                "", "end", values=(budget.amount, budget.category, budget.date, budget.tag)
+                "", "end", values=(budget.amount, budget.category, budget.date, budget.tag, budget.id)
             )
 
             if budget.category == 'Income':

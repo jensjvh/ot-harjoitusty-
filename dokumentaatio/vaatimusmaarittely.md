@@ -2,9 +2,9 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja. Ohjelma tuottaa kuukausittaisia yhteenvetoja ja ohjelmalla voi hallita säästämistä. Sovelluksella voi olla samaan aikaan useampi käyttäjä. Jokaisella käyttäjällä on pääsy vain omiin tietoihinsa.
+Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja. Ohjelman päänäkymässä käyttäjä voi luoda uusia budjetteja, tarkastella listaa budjeteistaan, sekä tilastoja menoista ja tuloistaan. Ohjelman lisätietonäkymässä käyttäjä näkee tarkempia tietoja tuloista ja menoista. Sovelluksella voi olla samaan aikaan useampi käyttäjä. Jokaisella käyttäjällä on pääsy vain omiin tietoihinsa.
 
-## Suunnitellut toiminnallisuudet
+## Toiminnallisuudet
 
 ### Perusversio
 
@@ -20,11 +20,10 @@ Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja.
 - [x] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
 - [x] Käyttäjä näkee kuvaajasta tulot ja menot eri päiville.
 
-
-
 ### Jatkokehitys
 
-- [ ] Responsiivinen ja viimeistelty käyttöliittymä. Selkeät esitystavat datalle.
+- [ ] Export ja Import toiminto CSV -tiedostoille.
+- [ ] Haku- ja filtteröintitoiminto budjeteille.
 - [ ] Käyttäjä voi muokata annettuja tietoja
 - [ ] Kalenterinäkymä.
 - [ ] Käyttäjä voi tarkastella kuukausittaista yhteenvetoa.

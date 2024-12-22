@@ -38,6 +38,18 @@ poetry run invoke start
 
 Testit ja kattavuuden voi suorittaa komennoilla `poetry run invoke test`, `poetry run invoke coverage` ja `poetry run invoke coverage-report`.
 
-* Käyttäjän luomista varten siirry ensin rekisteröitymisnäkymään 'Create user' napilla.
-* Rekisteröitymisen jälkeen voit kirjautua sisään tunnuksillasi päänäytössä.
-* Päänäkymässä voit luoda budjetteja, sekä tarkastella niitä listassa.
+## Kirjautuminen
+
+Aluksi käyttäjä näkee kirjautumisnäkymän:
+
+![kirjautumisnäkymä](./images/login.png)
+
+Näkymästä voi joko kirjautua sisään olemassaolevilla tunnuksilla ja painamalla login-painiketta, tai siirtyä rekisteröitymisnäkymään Create account -painikkeella.
+
+## Rekisteröityminen
+
+![rekisteröitymisnäkymä](./images/register.png)
+
+Rekisteröitymisnäkymässä voi luoda uuden käyttäjätilin uniikilla käyttäjänimellä ja vähintään kahdeksan merkkiä sisältävällä salasanalla. Käyttäjän salasana tallennetaan tietokantaan hajautettuna Argon2 -kirjastolla. Mikäli käyttäjänimi on käytössä tai salasana on liian lyhyt, ilmoittaa näkymä tästä virheviestillä.
+
+Painamalla Create account -painiketta validilla syötteellä, käyttäjätili luodaan ja käyttäjä siirretään takaisin kirjautumisnäkymään. Painamalla Back -painiketta, voi siirtyä manuaalisesti takaisin kirjautumisnäkymään.
