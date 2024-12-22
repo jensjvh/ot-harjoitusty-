@@ -53,7 +53,7 @@ sequenceDiagram
     UI->>UI: _show_budget_main_view()
 ```
 
-Käynnistyksen yhteydessä UI kutsuu _show_login_view()-metodia, jolla näytetään kirjautumisnäkymä käyttäjälle. Käyttäjän painamalla kirjautumispainiketta, kutsuu UI `UserService` palvelun login()-metodia käyttäjätunnuksella ja salasanalla. `UserService` kutsuu `UserRepository` luokan find_user()metodia parametrina käyttäjänimi, joka palauttaa `User` olion, jos käyttäjä löytyy. `UserService` palauttaa tämän `User` olion, ja UI ohjaa käyttäjän sovelluksen päänäkymään metodilla _show_budget_main_view().
+Käynnistyksen yhteydessä UI kutsuu _show_login_view()-metodia, jolla näytetään kirjautumisnäkymä käyttäjälle. Käyttäjän painamalla kirjautumispainiketta, kutsuu UI `UserService` palvelun login()-metodia käyttäjätunnuksella ja salasanalla. `UserService` kutsuu `UserRepository` luokan find_user()-metodia parametrina käyttäjänimi, joka palauttaa `User` olion, jos käyttäjä löytyy. `UserService` palauttaa tämän `User` olion, ja UI ohjaa käyttäjän sovelluksen päänäkymään metodilla _show_budget_main_view().
 
 ## Rekisteröityminen
 
@@ -98,5 +98,20 @@ sequenceDiagram
     BudgetService->>BudgetRepository: create(budget)
     BudgetRepository->>BudgetService: budget
     BudgetService->>UI: budget
+    UI->>UI: refresh_budget_list()
+```
+
+### Budjettien poistaminen
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant BudgetService
+    participant BudgetRepository
+    UI->>UI: _show_budget_main_view()
+    User->>UI: Delete Selected Budget
+    UI->>BudgetService: delete_budget_by_id(budget_id)
+    BudgetService->>BudgetRepository: delete_budget_by_id(budget_id)
     UI->>UI: refresh_budget_list()
 ```
