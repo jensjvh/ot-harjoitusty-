@@ -13,4 +13,5 @@
 | 16.12. | 4   | Muutettu salasanat tietokannassa Argon2-hash salasanoiksi. Testejä UserService-luokalle. Lisätty tekstinäkymä, josta käyttäjä näkee kokonaistulot josta on vähennetty kokonaismenot.|
 | 17.12. | 5    | Kuvaaja budjettinäkymään, josta näkee tulojen ja menojen käyrät. Muutoksia kirjautumisen ja rekisteröitymisen ulkonäköön. |
 | 21.12. | 7    | Lisätty budjetti-olioille tägit, joilla määritellään käyttö- tai tulokohde. Lisätty details-näkymä, jossa näkee kaikki budjetteihin liittyvät kuvaajat ja hyödyllistä tietoa. Lisätty tkcalendar, jonka avulla budjettia luodessa voidaan valita kalenterista päivämäärä. Muutettu budjetti-olioiden poistaminen yksinkertaisemmaksi ID:n avulla. |
-| tunnit yhteensä | 44 |
+| 22.12. | 6    | Lisätty ympyräkaavio details-näkymään. Lisätty lisätietoja päänäkymään ja details-näkymään. Muutettu sovelluksen teema. Dokumentoinnin viimeistelyä ja uusia integraatiotestejä. |
+| tunnit yhteensä | 50 |
