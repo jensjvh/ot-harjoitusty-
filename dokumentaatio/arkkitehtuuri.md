@@ -8,28 +8,32 @@
     Services --> Repositories
     Repositories --> Entities
     Services --> Entities
+    UI --> Utils
+    Services --> Utils
 ```
 
-Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entities`. `UI` kerros kommunikoi `Services` kerroksen kanssa, `Services` `Repositories` ja `Entities` kanssa, sekä `Repositories` `Entities` kanssa.
+Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entities`. `UI` kerros kommunikoi `Services` kerroksen kanssa, `Services` `Repositories` ja `Entities` kanssa, sekä `Repositories` `Entities` kanssa. Sovelluksessa on myös `Utils` kerros, jota käyttävät `UI` ja `Services` kerros.
 
 ## Tietojen tallennus
 
-Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka tablet alustetaan tiedostossa `initialize_database.py`. Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty `.env`-tiedostossa.
+Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka tablet alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
 
 ## Sovelluslogiikka
 
 ```mermaid
   classDiagram
     UI  ..> BudgetService
+    UI  ..> UserService
+    UI  ..> Utils
     BudgetService ..> UserRepository
     BudgetService ..> BudgetRepository
+    BudgetService ..> Utils
+    UserService ..> UserRepository
+    UserService ..> Utils
     BudgetService "1" -- "*" User
     User "1" -- "*" Budget
     UserRepository ..> User
     BudgetRepository ..> Budget
-    UI ..> UserService
-    UserService ..> UserRepository
-    UserService "1" -- "*" User
 ```
 
 ## Käynnistys ja kirjautuminen
