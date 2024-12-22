@@ -18,6 +18,7 @@ class LoginView:
         self._error_label = None
 
         self._initialize()
+        self._center_window()
 
     def pack(self):
         """Display the login view."""
@@ -103,3 +104,16 @@ class LoginView:
         register_button.grid(columnspan=2, sticky=constants.EW, padx=5, pady=5)
 
         self._hide_error()
+
+    def _center_window(self):
+        """Center the window on the screen."""
+        self._root.update_idletasks()
+        window_width = self._root.winfo_width()
+        window_height = self._root.winfo_height()
+        screen_width = self._root.winfo_screenwidth()
+        screen_height = self._root.winfo_screenheight()
+
+        position_x = (screen_width // 2) - (window_width // 2)
+        position_y = (screen_height // 2) - (window_height // 2)
+
+        self._root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
