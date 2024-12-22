@@ -25,7 +25,7 @@ Uusin release [täällä](https://github.com/jensjvh/ot-harjoitustyo/releases/la
 ## Asennus
 
 1. Asenna tarvittavat packaget komennolla `poetry install`.
-2. Suorita ensin komento `poetry run invoke build` rakentaaksesi tietokannan.
+2. Jos haluat, määrittele juurihakemiston tiedostoihin `.env` ja `.env.test` haluamasi tietokannan tiedostonimi. Suorita sitten komento `poetry run invoke build` rakentaaksesi tietokannan.
 3. Tämän jälkeen sovelluksen voi käynnistää komennolla `poetry run invoke start`.
 
 ## Testaus

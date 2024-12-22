@@ -34,7 +34,7 @@ Testaamatta jäi `config.py`, josta jäi testaamatta pass kun kohdataan `FileNot
 
 ## Järjestelmätestaus
 
-Järjestelmätestaus on toteutettu manuaalisesti. Sovellus on testattu dokumentaation käyttöohjeen kuvaamalla tavalla Linux-ympäristössä. Testeissä on myös kokeiltu rikkovatko tyhjät tai odottamattomat syötteet sovelluksen toiminnan, ja toimiiko sovellus kun tietoja ei ole vielä syötetty.
+Järjestelmätestaus on toteutettu manuaalisesti. Sovellus on testattu dokumentaation käyttöohjeen kuvaamalla tavalla Linux-ympäristössä. Testejä on kokeiltu määrittelemällä env-tiedostoihin erilaisia tietokannan nimiä. Testeissä on myös kokeiltu rikkovatko tyhjät tai odottamattomat syötteet sovelluksen toiminnan, ja toimiiko sovellus kun tietoja ei ole vielä syötetty.
 
 ### Toiminnallisuudet
 

@@ -16,6 +16,8 @@ Testejä varten luo myös .env.test tiedosto, tällä sisällöllä:
 DATABASE_FILENAME=test-database.sqlite
 ```
 
+Voit myös määritellä näihin tiedostoihin oman tietokantasi nimen. Jos käytät olemassaolevaa SQLite tietokantaa, sen täytyy sijaita juurihakemiston data-kansiossa.
+
 ## Käynnistäminen
 
 Asenna riippuvuudet komennolla
