@@ -16,7 +16,9 @@ Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entiti
 
 ## Tietojen tallennus
 
-Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka tablet alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
+Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka taulut alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
+
+Tietokannassa käyttäjät tallennetaan tauluun `users`, jossa on sarakkeina käyttäjän nimi ja hajautettu salasana. Budjetit tallennetaan tauluun `budgets`, jossa on sarakkeina `id`, budjetin tunnistin, `user`, omistajan käyttäjänimi, `amount`, budjetin määrä, `category`, budjetin kategoria (income/expense), `date`, budjetin päivämäärä, ja `tag`, budjetin tägi, tai luokittelu.
 
 ## Käyttöliittymä
 

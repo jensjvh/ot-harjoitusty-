@@ -41,9 +41,11 @@
 ### Lisäykset
 * Päänäkymästä voi siirtyä details-näkymään, josta näkee kuvaajat ja tietoa budjetista.
 * Lisätty tietokannan budjeteille id ja tag sarakkeet.
+* Kalenterivalikko budjettien luomisen yhteydessä.
 * Tunnusluku sovelluksen päänäkymään, josta käyttäjä näkee kokonaistulojensa ja kokonaismenojensa erotuksen.
 * Kuvaaja sovelluksen päänäkymään, josta käyttäjä näkee omat tulonsa ja menonsa.
 * Budjettia luodessa voidaan valita tkcalendar-kalenterista päivämäärä.
+* Uusia testejä vastaamaan muutoksia, sekä integraatiotestejä.
 
 ### Muutokset
 * Muutettu salasanat tietokannassa Argon2-hash salasanoiksi.
