@@ -14,19 +14,21 @@
 
 Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entities`. `UI` kerros kommunikoi `Services` kerroksen kanssa, `Services` `Repositories` ja `Entities` kanssa, sekä `Repositories` `Entities` kanssa. Sovelluksessa on myös `Utils` kerros, jota käyttävät `UI` ja `Services` kerros.
 
+`UI` sisältää käyttöliittymän koodin, `Services` sovelluslogiikan koodin, `Repositories` tietokantaoperaatioista vastaavan koodin, `Entities` budjetti- ja käyttäjäolioista vastaavan koodin, ja `Utils` useissa eri osissa käytettyjen työkalujen koodin.
+
 ## Tietojen tallennus
 
-Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka taulut alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
+Luokat [BudgetRepository](../src/repositories/budget_repository.py) ja [UserRepository](../src/repositories/user_repository.py) ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka taulut alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
 
 Tietokannassa käyttäjät tallennetaan tauluun `users`, jossa on sarakkeina käyttäjän nimi ja hajautettu salasana. Budjetit tallennetaan tauluun `budgets`, jossa on sarakkeina `id`, budjetin tunnistin, `user`, omistajan käyttäjänimi, `amount`, budjetin määrä, `category`, budjetin kategoria (income/expense), `date`, budjetin päivämäärä, ja `tag`, budjetin tägi, tai luokittelu.
 
 ## Käyttöliittymä
 
-Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle.
+Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle. Kirjautuminen, rekisteröityminen, ja budjettien lisätiedot ovat omissa luokissaan `UI`-hakemistossa. [Budjettien tarkastelunäkymä](../src/ui/budget_main_view.py) on omassa luokassaan, jonka sisällä on budjettien lisäyksen [popup-näkymä](../src/ui/budget_main_view.py#L238). 
 
-Näkymien näyttämisen ja vaihtamisen hoitaa `UI`-luokka. Käyttöliittymä kutsuu pääasiassa luokkien `UserService` ja `BudgetService` metodeja, mutta sisältää myös metodin käyttäjän syötteen validoinnille. Käyttöliittymään kuuluu myös metodit `generate_budget_graph` ja `generate_pie_chart`, jotka hoitavat kuvaajien piirtämisen.
+Näkymien näyttämisen ja vaihtamisen hoitaa `UI`-luokka. Käyttöliittymä kutsuu pääasiassa luokkien [UserService](../src/services/user_service.py) ja [BudgetService](../src/services/budget_service.py) metodeja, mutta sisältää myös metodin käyttäjän syötteen validoinnille. Käyttöliittymään kuuluu myös metodit [generate_budget_graph()](../src/ui/build_graph.py) ja [generate_pie_chart()](../src/ui/build_pie_chart.py), jotka hoitavat kuvaajien piirtämisen.
 
-Budjettilistaa päivittäessä kutsutaan metodia refresh_budget_list(), jolla näytetään käyttäjälle uusin päivitys listasta.
+Sovelluksen päänäkymän avautuessa ja budjettilistaa päivittäessä kutsutaan metodia [refresh_budget_list()](../src/ui/budget_main_view.py#L322), jolla näytetään käyttäjälle uusin versio listasta.
 
 ## Sovelluslogiikka
 
