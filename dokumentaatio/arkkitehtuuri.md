@@ -78,4 +78,21 @@ UI kutsuu _show_login_view()-metodia, joka näyttää käyttäjälle kirjautumis
 
 ## Käyttöliittymä
 
-Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, sekä pieni popup näkymä budjettien lisäykselle.
+Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle.
+
+### Budjettien luominen
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant BudgetService
+    participant BudgetRepository
+    UI->>UI: _show_budget_main_view()
+    User->>UI: Create Budget
+    UI->>BudgetService: create_budget(user, amount, category, date, tag)
+    BudgetService->>BudgetRepository: create(budget)
+    BudgetRepository->>BudgetService: budget
+    BudgetService->>UI: budget
+    UI->>UI: refresh_budget_list()
+```
