@@ -1,6 +1,5 @@
 from tkinter import ttk, constants
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from services.budget_service import budget_service
 from services.user_service import user_service
 from ui.build_graph import generate_budget_graph
