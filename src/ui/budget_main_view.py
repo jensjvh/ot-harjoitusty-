@@ -13,9 +13,19 @@ BUDGET_CATEGORIES = ['Income', 'Expense']
 
 
 class BudgetMainView:
-    """A class representing the main Budget overview view."""
+    """
+    A class representing the main Budget overview view.
+
+    Parameters
+    ----------
+    root(tk.TK): The main tkinter widget, root window.
+    handle_logout(method): Method to call on logout. 
+    """
 
     def __init__(self, root, handle_logout):
+        """
+        A constructor for BudgetMainView. Calls _initialize().
+        """
         self._root = root
         self._handle_logout = handle_logout
         self._user = user_service.get_current_user()
@@ -57,6 +67,13 @@ class BudgetMainView:
         self._frame.destroy()
 
     def _show_error(self, message):
+        """
+        Display error message.
+
+        Parameters
+        ----------
+            message(str): Error message string.
+        """
         self._error_variable.set(message)
         self._error_label.grid()
 
@@ -120,7 +137,7 @@ class BudgetMainView:
         self.refresh_budget_list()
 
         self._budget_treeview.grid(
-            row=1, column=0, columnspan=2, sticky=constants.NSEW, padx=10, pady=10)
+            row=1, column=0, columnspan=2, sticky=constants.NSEW, padx=10, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -174,17 +191,17 @@ class BudgetMainView:
         self._income_label = ttk.Label(
             self._frame, text="Total Income - Total Expenses: 0 €")
         self._income_label.grid(row=4, column=0, padx=5,
-                                pady=10, sticky=constants.W)
+                                pady=5, sticky=constants.W)
 
         self._average_savings_label = ttk.Label(
             self._frame, text="Average Monthly Savings: 0 €")
         self._average_savings_label.grid(row=4, column=2, padx=5,
-                                         pady=10, sticky=constants.W)
+                                         pady=5, sticky=constants.W)
 
         self._current_month_stats_label = ttk.Label(
             self._frame, text="Current Month Stats: Income: 0 €, Expense: 0 €")
         self._current_month_stats_label.grid(row=5, column=2, padx=5,
-                                             pady=10, sticky=constants.W)
+                                             pady=5, sticky=constants.W)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)
@@ -195,8 +212,8 @@ class BudgetMainView:
 
         Parameters
         ----------
-        amount(str): A string containing the amount to be added to a budget.
-        date(str): A date in string format.
+            amount(str): A string containing the amount to be added to a budget.
+            date(str): A date in string format.
         """
         try:
             float_amount = float(amount)
@@ -279,7 +296,7 @@ class BudgetMainView:
 
         new_budget_button = ttk.Button(
             create_budget_window, text="Create", command=new_budget)
-        new_budget_button.grid(row=4, column=0, columnspan=2, pady=10)
+        new_budget_button.grid(row=4, column=0, columnspan=2, pady=5)
 
     def _delete_budget(self):
         """Delete the selected budget from the budget table."""
@@ -332,14 +349,14 @@ class BudgetMainView:
 
         Parameters
         ----------
-        budgets(list[Budget]): A list containing Budget objects.
+            budgets(list[Budget]): A list containing Budget objects.
         """
         if self._canvas:
             self._canvas.get_tk_widget().destroy()
 
         self._canvas = generate_budget_graph(budgets, self._frame)
         self._canvas.get_tk_widget().grid(row=1, column=2, padx=10,
-                                          pady=10, sticky=constants.NSEW)
+                                          pady=5, sticky=constants.NSEW)
 
     def _update_stats(self, budgets):
         """
@@ -347,7 +364,7 @@ class BudgetMainView:
         
         Parameters
         ----------
-        budgets(list[Budget]): A list containing Budget objects.
+            budgets(list[Budget]): A list containing Budget objects.
         """
         total_income = 0
         total_expense = 0

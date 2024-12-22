@@ -1,10 +1,10 @@
 from tkinter import ttk, constants
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from services.budget_service import budget_service
 from services.user_service import user_service
 from ui.build_graph import generate_budget_graph
+from ui.build_pie_chart import generate_pie_chart
 
 
 class BudgetDetailsView:
@@ -41,9 +41,30 @@ class BudgetDetailsView:
         )
         back_button.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
 
+        self._add_summary()
         self._add_graph()
         self._add_pie_chart()
 
+    def _add_summary(self):
+        """Add summary statistics for total income, total expenses, and net savings."""
+        budgets = budget_service.get_user_budgets(user_service.get_current_user())
+
+        total_income = sum(budget.amount for budget in budgets if budget.category == 'Income')
+        total_expense = sum(budget.amount for budget in budgets if budget.category == 'Expense')
+        net_savings = total_income - total_expense
+
+        self._total_income_label = ttk.Label(
+            master=self._frame, text=f"Total Income: {total_income:.2f} €")
+        self._total_income_label.grid(row=2, column=0, padx=5, pady=5, sticky=constants.W)
+
+        self._total_expense_label = ttk.Label(
+            master=self._frame, text=f"Total Expenses: {total_expense:.2f} €")
+        self._total_expense_label.grid(row=3, column=0, padx=5, pady=5, sticky=constants.W)
+
+        self._net_savings_label = ttk.Label(
+            master=self._frame, text=f"Net Savings: {net_savings:.2f} €")
+        self._net_savings_label.grid(row=4, column=0, padx=5, pady=5, sticky=constants.W)
+    
     def _add_graph(self):
         """Add a graph to visualize expenses and income."""
         budgets = budget_service.get_user_budgets(
@@ -58,34 +79,11 @@ class BudgetDetailsView:
 
     def _add_pie_chart(self):
         """Add a pie chart to visualize expenses by tags."""
-        budgets = budget_service.get_user_budgets(
-            user_service.get_current_user())
-
-        tag_dict = {}
-
-        for budget in budgets:
-            if budget.category == 'Expense':
-                tag = budget.tag
-                amount = budget.amount
-                if tag in tag_dict:
-                    tag_dict[tag] += amount
-                else:
-                    tag_dict[tag] = amount
-
-        tags = list(tag_dict.keys())
-        amounts = list(tag_dict.values())
-
-        fig, ax = plt.subplots(figsize=(5, 4))
-        ax.pie(amounts, labels=tags, autopct='%1.1f%%', startangle=90)
-        ax.axis('equal')
-        ax.set_title('Expenses by Tags')
-
-        plt.tight_layout()
+        budgets = budget_service.get_user_budgets(user_service.get_current_user())
 
         if self._pie_chart_canvas:
             self._pie_chart_canvas.get_tk_widget().destroy()
 
-        self._pie_chart_canvas = FigureCanvasTkAgg(fig, master=self._frame)
-        self._pie_chart_canvas.draw()
+        self._pie_chart_canvas = generate_pie_chart(budgets, self._frame)
         self._pie_chart_canvas.get_tk_widget().grid(row=1, column=1, padx=5,
-                                                    pady=5, sticky=constants.E)
+                                                    pady=5, sticky=constants.NSEW)

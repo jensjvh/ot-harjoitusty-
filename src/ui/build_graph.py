@@ -5,7 +5,14 @@ from utils.date_utils import convert_to_datetime
 
 
 def generate_budget_graph(budgets, master):
-    """Generate a graph to visualize expenses and income."""
+    """
+    Generate a graph to visualize expenses and income.
+    
+    Parameters
+    ----------
+    budgets(list[Budgets]): A list of budgets.
+    master(ttk.Frame): The master frame.
+    """
     income_dict = {}
     expense_dict = {}
 

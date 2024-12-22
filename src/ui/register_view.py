@@ -11,7 +11,8 @@ class RegisterView:
 
         Parameters
         ----------
-            root: Tkinter widget.
+            root(tk.Tk): Tkinter widget.
+            handle_register
         """
 
         self._root = root
