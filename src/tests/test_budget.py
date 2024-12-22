@@ -24,3 +24,10 @@ class TestBudget(unittest.TestCase):
         expected_str = "Budget(test1, 10, Income, 01.01.2024, allowance)"
 
         self.assertEqual(str(self.budget_example), expected_str)
+
+    def test_invalid_comparison_returns_false(self):
+        compare_string = "not a budget object"
+
+        comparison_result = (self.budget_example == compare_string)
+
+        self.assertFalse(comparison_result)
