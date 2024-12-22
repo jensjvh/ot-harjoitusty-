@@ -71,7 +71,8 @@ class RegisterView:
             row=1, column=1, padx=5, pady=5, sticky=(constants.E, constants.W))
 
     def _initialize_password_input(self):
-        password_label = ttk.Label(master=self._frame, text="Password (at least 8 characters)")
+        password_label = ttk.Label(
+            master=self._frame, text="Password (at least 8 characters)")
 
         self._password_entry = ttk.Entry(master=self._frame, show="*")
 

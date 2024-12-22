@@ -42,5 +42,13 @@ class BudgetService:
 
         return list(budgets)
 
+    def delete_all(self):
+        """Delete all budgets."""
+        self._budget_repository.delete_all()
+
+    def delete_all_by_username(self, username):
+        """Delete all budgets by username."""
+        self._budget_repository.delete_all_by_username(username)
+
 
 budget_service = BudgetService()

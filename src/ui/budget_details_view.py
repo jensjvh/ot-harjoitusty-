@@ -100,7 +100,7 @@ class BudgetDetailsView:
         self._graph_canvas = FigureCanvasTkAgg(fig, master=self._frame)
         self._graph_canvas.draw()
         self._graph_canvas.get_tk_widget().grid(row=1, column=0, padx=5,
-                                          pady=5, sticky=constants.W)
+                                                pady=5, sticky=constants.W)
 
     def _add_pie_chart(self):
         """Add a pie chart to visualize expenses by tags."""
@@ -134,4 +134,4 @@ class BudgetDetailsView:
         self._pie_chart_canvas = FigureCanvasTkAgg(fig, master=self._frame)
         self._pie_chart_canvas.draw()
         self._pie_chart_canvas.get_tk_widget().grid(row=1, column=1, padx=5,
-                                          pady=5, sticky=constants.E)
+                                                    pady=5, sticky=constants.E)

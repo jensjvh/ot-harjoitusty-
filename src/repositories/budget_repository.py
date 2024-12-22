@@ -71,11 +71,23 @@ class BudgetRepository:
                            row["id"]) for row in rows]
         return None
 
+    def delete_all_by_username(self, username):
+        """
+        Delete all budgets by username.
+        """
+        cursor = self._connection.cursor()
+
+        cursor.execute("""
+                       delete from budgets
+                       where user = ?
+                       """,
+                       (username,)
+                       )
+
     def delete_all(self):
         """
         Delete all budgets from budgets table.
         """
-
         cursor = self._connection.cursor()
 
         cursor.execute("delete from budgets")

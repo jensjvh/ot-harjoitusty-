@@ -55,10 +55,3 @@ class Budget:
 
     def __repr__(self):
         return f"Budget({self._user}, {self._amount}, {self._category}, {self._date}, {self._tag})"
-
-    def to_tuple(self):
-        """
-        Convert class instance to a tuple for easier database insertion.
-        """
-
-        return (self._user, self._amount, self._category, self._date, self._tag)
