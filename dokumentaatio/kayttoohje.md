@@ -72,4 +72,4 @@ Budjettia luodessa voi antaa budjetin määrän (Amount) enintään kahden desim
 
 ![lisätietonäkymä](./images/budjetti_details.png)
 
-Lisätietonäkymässä on sama kuvaaja kuin budjettinäkymässä, sekä ympyräkaavio eri tägien menoille. Näkymässä on myös tiedot kokonaistuloista, kokonaismenoista, sekä kokonaissäästöistä. Ympyräkaavion alapuolella on tarkempi lista eri tägeihin kohdistuneista menoista.
+Lisätietonäkymässä on sama kuvaaja kuin budjettinäkymässä, sekä ympyräkaavio eri tägien menoille. Näkymässä on myös tiedot kokonaistuloista, kokonaismenoista, sekä kokonaissäästöistä. Ympyräkaavion alapuolella on tarkempi lista eri tägeihin kohdistuneista menoista. Näkymästä voi poistua Back-painikkeella.
