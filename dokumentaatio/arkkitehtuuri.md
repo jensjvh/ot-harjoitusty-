@@ -18,6 +18,10 @@ Sovelluksen rakenteessa on kerrokset `UI`, `Services`, `Repositories` ja `Entiti
 
 Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietojen tallentamisesta. Molemmat käyttävät SQLite-tietokantaa, jonka tablet alustetaan tiedostossa [initialize_database.py](../src/initialize_database.py). Tiedostot sijaitsevat juurihakemiston `data` hakemistossa, ja tiedostojen nimet on määritelty [.env](../.env)-tiedostossa. Testauksessa tiedostojen nimet on määritelty [.env.test](../.env.test)-tiedostossa.
 
+## Käyttöliittymä
+
+Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle.
+
 ## Sovelluslogiikka
 
 ```mermaid
@@ -38,6 +42,8 @@ Luokat `BudgetRepository` ja `UserRepository` ovat vastuussa sovelluksen tietoje
 
 ## Käynnistys ja kirjautuminen
 
+Kun sovellus käynnistetään ja käyttäjä kirjautuu sisään oikeilla tunnuksilla, toimii sovellus näin:
+
 ```mermaid
 sequenceDiagram
     actor User
@@ -56,6 +62,8 @@ sequenceDiagram
 Käynnistyksen yhteydessä UI kutsuu _show_login_view()-metodia, jolla näytetään kirjautumisnäkymä käyttäjälle. Käyttäjän painamalla kirjautumispainiketta, kutsuu UI `UserService` palvelun login()-metodia käyttäjätunnuksella ja salasanalla. `UserService` kutsuu `UserRepository` luokan find_user()-metodia parametrina käyttäjänimi, joka palauttaa `User` olion, jos käyttäjä löytyy. `UserService` palauttaa tämän `User` olion, ja UI ohjaa käyttäjän sovelluksen päänäkymään metodilla _show_budget_main_view().
 
 ## Rekisteröityminen
+
+Kun käyttäjä käynnistää sovelluksen ja siirtyy luomaan uuden käyttäjän, etenee sovellus seuraavasti:
 
 ```mermaid
 sequenceDiagram
@@ -80,11 +88,9 @@ sequenceDiagram
 
 UI kutsuu _show_login_view()-metodia, joka näyttää käyttäjälle kirjautumisnäkymän. Käyttäjä painaa "Create account" -painiketta, jolloin UI kutsuu _show_register_view()-metodia, joka näyttää rekisteröitymisnäkymän. UI kutsuu `UserService`-palvelun create_user()-metodia, jossa käyttäjätunnus ja salasana annetaan parametreina. `UserService` kutsuu `UserRepository`-luokan find_user()-metodia tarkistaakseen, onko käyttäjätunnus jo olemassa. `UserRepository` ei löydä käyttäjää, joten se palauttaa None. `UserService` luo uuden käyttäjän User-olion muodossa, käyttäjätunnuksella ja salasanalla. UserService kutsuu `UserRepository`-luokkaa create()-metodilla luodakseen uuden käyttäjän tietokantaan. `UserRepository` palauttaa luodun käyttäjän UserService-palvelulle. UserService palauttaa käyttäjän UI:lle. UI ohjaa käyttäjän sovelluksen päänäkymään kutsumalla _show_budget_main_view()-metodia.
 
-## Käyttöliittymä
-
-Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle.
-
 ### Budjettien luominen
+
+Kun käyttäjä siirtyy sovelluksen päänäkymään ja luo uuden budjetin oikeilla arvoilla, toimii sovellus näin:
 
 ```mermaid
 sequenceDiagram
@@ -101,7 +107,11 @@ sequenceDiagram
     UI->>UI: refresh_budget_list()
 ```
 
+UI kutsuu `BudgetService` metodia create_budget() annetuilla arvoilla. `BudgetService` kutsuu luokkaa `BudgetRepository` metodilla create(), ja onnistuessa `BudgetRepository` palauttaa `Budget`-olion. `BudgetService` edelleen palauttaa `Budget` olion UI:lle, ja UI päivittää budjettilistan metodillaan refresh_budget_list().
+
 ### Budjettien poistaminen
+
+Kun käyttäjä valitsee päänäkymän pöydällä olevan budjetin ja painaa nappia "Delete Selected Budget", toimii sovellus nin:
 
 ```mermaid
 sequenceDiagram
@@ -115,3 +125,5 @@ sequenceDiagram
     BudgetService->>BudgetRepository: delete_budget_by_id(budget_id)
     UI->>UI: refresh_budget_list()
 ```
+
+UI kutsuu `BudgetService` metodia delete_budget_by_id() pöydältä valitun budjetin id:llä. `BudgetService` kutsuu luokkaa `BudgetRepository` metodilla delete_budget_by_id() ja lopuksi UI päivittää budjettilistan metodillaan refresh_budget_list().

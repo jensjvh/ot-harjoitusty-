@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja. Ohjelman päänäkymässä käyttäjä voi luoda uusia budjetteja, tarkastella listaa budjeteistaan, sekä tilastoja menoista ja tuloistaan. Ohjelman lisätietonäkymässä käyttäjä näkee tarkempia tietoja tuloista ja menoista. Sovelluksella voi olla samaan aikaan useampi käyttäjä. Jokaisella käyttäjällä on pääsy vain omiin tietoihinsa.
+Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla käyttäjä voi syöttää ja kategorisoida menoja ja tuloja. Ohjelman päänäkymässä käyttäjä voi luoda uusia budjetteja, tarkastella listaa budjeteistaan, sekä tilastoja menoista ja tuloistaan. Ohjelman lisätietonäkymässä käyttäjä näkee tarkempia tietoja tuloista ja menoista. Sovelluksella voi olla samaan aikaan useampi käyttäjä. Jokaisella käyttäjällä on pääsy vain omiin tietoihinsa. Sovelluksessa on pelkästään normaaleja käyttäjiä.
 
 ## Toiminnallisuudet
 
