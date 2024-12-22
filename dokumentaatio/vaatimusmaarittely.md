@@ -22,6 +22,7 @@ Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla
 - Käyttäjä voi poistaa listalta valittuja budjetteja.
 - Käyttäjä voi tarkastella tilastoja säästöistään.
 - Käyttäjä näkee kuvaajasta tulot ja menot eri päiville.
+- Käyttäjä näkee lisätietoja menoista ja tuloistaan lisätietonäkymästä. Lisätietonäkymässä näkyy ympyräkaavio ja menot luokiteltuna eri tägeihin.
 
 ### Jatkokehitys
 
