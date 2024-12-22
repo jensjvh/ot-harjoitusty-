@@ -51,7 +51,7 @@ Sovelluksen tietomalli muodostuu luokista `User` ja `Budget`. Yhdellä käyttäj
     }
 ```
 
-Sovelluslogiikan ja käyttöliittymän yhteydestä vastaavat luokat `BudgetService` ja `UserService`. Nämä luokat kutsuvat repositorio-luokkien `BudgetRepository` ja `UserRepository` metodeja, joilla sovelluksen tietokantaa päivitetään.
+Sovelluslogiikan ja käyttöliittymän yhteydestä vastaavat luokat [BudgetService](../src/services/budget_service.py) ja [UserService](../src/services/user_service.py). Nämä luokat kutsuvat repositorio-luokkien [BudgetRepository](../src/repositories/budget_repository.py) ja [UserRepository](../src/repositories/user_repository.py) metodeja, joilla sovelluksen tietokantaa päivitetään.
 
 Ohjelman osien suhteita kuvaa seuraava kaavio:
 
@@ -71,7 +71,9 @@ Ohjelman osien suhteita kuvaa seuraava kaavio:
     BudgetRepository ..> Budget
 ```
 
-## Käynnistys ja kirjautuminen
+## Sovelluksen päätoiminnallisuudet
+
+### Käynnistys ja kirjautuminen
 
 Kun sovellus käynnistetään ja käyttäjä kirjautuu sisään oikeilla tunnuksilla, toimii sovellus näin:
 
@@ -95,7 +97,7 @@ sequenceDiagram
 
 Käynnistyksen yhteydessä UI kutsuu _show_login_view()-metodia, jolla näytetään kirjautumisnäkymä käyttäjälle. Käyttäjän painamalla kirjautumispainiketta, kutsuu UI `UserService` palvelun login()-metodia käyttäjätunnuksella ja salasanalla. `UserService` kutsuu `UserRepository` luokan find_user()-metodia parametrina käyttäjänimi, joka palauttaa `User` olion, jos käyttäjä löytyy. `UserService` vahvistaa vielä salasanan `PasswordUtils` moduulilta, joka palauttaa vahvistuksen tuloksen. `UserService` palauttaa `User` olion, ja UI ohjaa käyttäjän sovelluksen päänäkymään metodilla _show_budget_main_view().
 
-## Rekisteröityminen
+### Rekisteröityminen
 
 Kun käyttäjä käynnistää sovelluksen ja siirtyy luomaan uuden käyttäjän, etenee sovellus seuraavasti:
 
