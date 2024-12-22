@@ -53,3 +53,21 @@ Näkymästä voi joko kirjautua sisään olemassaolevilla tunnuksilla ja painama
 Rekisteröitymisnäkymässä voi luoda uuden käyttäjätilin uniikilla käyttäjänimellä ja vähintään kahdeksan merkkiä sisältävällä salasanalla. Käyttäjän salasana tallennetaan tietokantaan hajautettuna Argon2 -kirjastolla. Mikäli käyttäjänimi on käytössä tai salasana on liian lyhyt, ilmoittaa näkymä tästä virheviestillä.
 
 Painamalla Create account -painiketta validilla syötteellä, käyttäjätili luodaan ja käyttäjä siirretään takaisin kirjautumisnäkymään. Painamalla Back -painiketta, voi siirtyä manuaalisesti takaisin kirjautumisnäkymään.
+
+## Budjettinäkymä
+
+![budjettinäkymä](./images/budjetti.png)
+
+Budjettinäkymässä voi lisätä budjetteja painikkeella Create Budget, poistaa luotuja budjetteja painikkeella Delete Selected Budget, kirjautua ulos Logout-painikkeella, tai siirtyä lisätietonäkymään Show details-painikkeella. Näkymässä on myös lista budjeteista, sekä menojen ja tulojen kuvaaja eri päiville. Näkymässä on myös muita lisätietoja, kuten kokonaistuloista vähennetyt kokonaismenot, kuukausisäästöjen keskiarvo, sekä menot ja tulot nykyiselle kuukaudelle.
+
+## Budjetin luominen
+
+![budjetin luominen](./images/uusi_budjetti.png)
+
+Budjettia luodessa voi antaa budjetin määrän (Amount) enintään kahden desimaalin tarkkuudella, tai kokonaislukuna. Kategorian voi valita tuloksi tai menoksi dropdown-valikosta. Päivämäärä tulee olla muodossa PP.KK.VVVV. Päivämäärän voi joko kirjoittaa tai valita kalenterivalikosta. Budjetin tägi voi olla mikä tahansa enintään 10-kirjaiminen merkkijono. Budjetti luodaan Create-painikkeesta.
+
+## Lisätietonäkymä
+
+![lisätietonäkymä](./images/budjetti_details.png)
+
+Lisätietonäkymässä on sama kuvaaja kuin budjettinäkymässä, sekä ympyräkaavio eri tägien menoille. Näkymässä on myös tiedot kokonaistuloista, kokonaismenoista, sekä kokonaissäästöistä. Ympyräkaavion alapuolella on tarkempi lista eri tägeihin kohdistuneista menoista.

@@ -206,7 +206,7 @@ class BudgetMainView:
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)
 
-    def _validate_input(self, amount: str, date: str):
+    def _validate_input(self, amount: str, date: str, tag):
         """
         Validate given amount and date.
 
@@ -214,6 +214,7 @@ class BudgetMainView:
         ----------
             amount(str): A string containing the amount to be added to a budget.
             date(str): A date in string format.
+            tag(str|None): A tag string.
         """
         try:
             float_amount = float(amount)
@@ -230,6 +231,9 @@ class BudgetMainView:
             convert_to_datetime(date)
         except ValueError:
             raise ValueError("Invalid date format")
+        if tag:
+            if len(tag) > 10:
+                raise ValueError("Tag too long.")
 
     def _open_create_budget_view(self):
         """Open the view for creating a new budget."""
@@ -261,7 +265,7 @@ class BudgetMainView:
                                width=29, date_pattern='dd.mm.yyyy')
         date_entry.grid(row=2, column=1, padx=10, pady=5)
 
-        tag_label = ttk.Label(create_budget_window, text="Tag:")
+        tag_label = ttk.Label(create_budget_window, text="Tag (up to 10 characters):")
         tag_label.grid(row=3, column=0, padx=10, pady=5)
         tag_entry = ttk.Entry(create_budget_window, width=30)
         tag_entry.grid(row=3, column=1, padx=10, pady=5)
@@ -279,7 +283,7 @@ class BudgetMainView:
             tag = tag_entry.get()
 
             try:
-                self._validate_input(amount, date)
+                self._validate_input(amount, date, tag)
             except ValueError as e:
                 error_label.config(text=str(e))
                 return
