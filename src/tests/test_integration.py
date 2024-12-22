@@ -36,7 +36,7 @@ class TestIntegration(unittest.TestCase):
 
         self.assertEqual(self.user_test1.username,
                          user_service.get_current_user().username)
-    
+
     def test_user_log_out(self):
         user_service.login('test_user', 'password123')
         user_service.logout()

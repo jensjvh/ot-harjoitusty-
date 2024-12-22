@@ -3,6 +3,7 @@ import matplotlib.dates as mdates
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from utils.date_utils import convert_to_datetime
 
+
 def generate_budget_graph(budgets, master):
     """Generate a graph to visualize expenses and income."""
     income_dict = {}

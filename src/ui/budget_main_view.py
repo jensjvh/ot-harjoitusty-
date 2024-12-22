@@ -8,8 +8,6 @@ from ui.budget_details_view import BudgetDetailsView
 from ui.build_graph import generate_budget_graph
 
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import matplotlib.dates as mdates
 
 BUDGET_CATEGORIES = ['Income', 'Expense']
 
@@ -29,6 +27,8 @@ class BudgetMainView:
         self._error_label = None
         self._income_label = None
         self._canvas = None
+        self._average_savings_label = None
+        self._current_month_stats_label = None
 
         self._initialize()
 
@@ -176,10 +176,28 @@ class BudgetMainView:
         self._income_label.grid(row=4, column=0, padx=5,
                                 pady=10, sticky=constants.W)
 
+        self._average_savings_label = ttk.Label(
+            self._frame, text="Average Monthly Savings: 0 €")
+        self._average_savings_label.grid(row=4, column=2, padx=5,
+                                         pady=10, sticky=constants.W)
+
+        self._current_month_stats_label = ttk.Label(
+            self._frame, text="Current Month Stats: Income: 0 €, Expense: 0 €")
+        self._current_month_stats_label.grid(row=5, column=2, padx=5,
+                                             pady=10, sticky=constants.W)
+
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)
 
     def _validate_input(self, amount: str, date: str):
+        """
+        Validate given amount and date.
+
+        Parameters
+        ----------
+        amount(str): A string containing the amount to be added to a budget.
+        date(str): A date in string format.
+        """
         try:
             float_amount = float(amount)
             if float_amount <= 0:
@@ -237,6 +255,7 @@ class BudgetMainView:
                          padx=10, pady=5, sticky=constants.SW)
 
         def new_budget():
+            """Create a new budget."""
             amount = amount_entry.get()
             category = category_variable.get()
             date = date_entry.get()
@@ -263,6 +282,7 @@ class BudgetMainView:
         new_budget_button.grid(row=4, column=0, columnspan=2, pady=10)
 
     def _delete_budget(self):
+        """Delete the selected budget from the budget table."""
         selected_item = self._budget_treeview.selection()
         if not selected_item:
             self._show_error("No item selected")
@@ -278,6 +298,7 @@ class BudgetMainView:
             self._show_error(str(e))
 
     def refresh_budget_list(self):
+        """Method for updating the budget table."""
         total_income = 0
         total_expense = 0
 
@@ -303,12 +324,73 @@ class BudgetMainView:
                 )
 
         self._add_graph(budgets)
+        self._update_stats(budgets)
 
     def _add_graph(self, budgets):
-        """Add a graph to visualize expenses and income."""
+        """
+        Add a graph to visualize expenses and income.
+
+        Parameters
+        ----------
+        budgets(list[Budget]): A list containing Budget objects.
+        """
         if self._canvas:
             self._canvas.get_tk_widget().destroy()
 
         self._canvas = generate_budget_graph(budgets, self._frame)
         self._canvas.get_tk_widget().grid(row=1, column=2, padx=10,
                                           pady=10, sticky=constants.NSEW)
+
+    def _update_stats(self, budgets):
+        """
+        Update the average monthly savings and current month stats.
+        
+        Parameters
+        ----------
+        budgets(list[Budget]): A list containing Budget objects.
+        """
+        total_income = 0
+        total_expense = 0
+        monthly_savings = {}
+        current_month_income = 0
+        current_month_expense = 0
+        current_month = datetime.now().strftime("%m.%Y")
+
+        for budget in budgets:
+            date = convert_to_datetime(budget.date)
+            month_year = date.strftime("%m.%Y")
+            amount = float(budget.amount)
+
+            if budget.category == 'Income':
+                total_income += amount
+                if month_year == current_month:
+                    current_month_income += amount
+            elif budget.category == 'Expense':
+                total_expense += amount
+                if month_year == current_month:
+                    current_month_expense += amount
+
+            if month_year not in monthly_savings:
+                monthly_savings[month_year] = 0
+            if budget.category == 'Income':
+                monthly_savings[month_year] += amount
+            elif budget.category == 'Expense':
+                monthly_savings[month_year] -= amount
+
+        if monthly_savings:
+            average_savings = sum(monthly_savings.values()
+                                  ) / len(monthly_savings)
+        else:
+            average_savings = 0
+
+        if self._average_savings_label:
+            if self._average_savings_label.winfo_exists():
+                self._average_savings_label.config(
+                    text=f"Average Monthly Savings: {average_savings:.2f} €"
+                )
+
+        if self._current_month_stats_label:
+            if self._current_month_stats_label.winfo_exists():
+                self._current_month_stats_label.config(
+                    text=f"Current Month Stats: Income: {current_month_income:.2f} €, Expense: {current_month_expense:.2f} €"
+                )
