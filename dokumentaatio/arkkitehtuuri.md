@@ -24,7 +24,34 @@ Tietokannassa käyttäjät tallennetaan tauluun `users`, jossa on sarakkeina kä
 
 Sovelluksessa on näkymät kirjautumiselle, rekisteröitymiselle, budjettien tarkastelulle, budjettien lisätiedoille, sekä pieni popup näkymä budjettien lisäykselle.
 
+Näkymien näyttämisen ja vaihtamisen hoitaa `UI`-luokka. Käyttöliittymä kutsuu pääasiassa luokkien `UserService` ja `BudgetService` metodeja, mutta sisältää myös metodin käyttäjän syötteen validoinnille. Käyttöliittymään kuuluu myös metodit `generate_budget_graph` ja `generate_pie_chart`, jotka hoitavat kuvaajien piirtämisen.
+
+Budjettilistaa päivittäessä kutsutaan metodia refresh_budget_list(), jolla näytetään käyttäjälle uusin päivitys listasta.
+
 ## Sovelluslogiikka
+
+Sovelluksen tietomalli muodostuu luokista `User` ja `Budget`. Yhdellä käyttäjällä voi olla monta budjetti-oliota:
+
+```mermaid
+  classDiagram
+    Budget "*" --> "1" User
+    class User{
+        username
+        password_hash
+    }
+    class Budget{
+        budget_id
+        user
+        amount
+        category
+        date
+        tag
+    }
+```
+
+Sovelluslogiikan ja käyttöliittymän yhteydestä vastaavat luokat `BudgetService` ja `UserService`. Nämä luokat kutsuvat repositorio-luokkien `BudgetRepository` ja `UserRepository` metodeja, joilla sovelluksen tietokantaa päivitetään.
+
+Ohjelman osien suhteita kuvaa seuraava kaavio:
 
 ```mermaid
   classDiagram
@@ -52,11 +79,14 @@ sequenceDiagram
     participant UI
     participant UserService
     participant UserRepository
+    participant PasswordUtils
     UI->>UI: _show_login_view()
     User->>UI: Login with username and password
     UI->>UserService: login(username, password)
     UserService->>UserRepository: find_user(username)
     UserRepository->>UserService: user
+    UserService->>PasswordUtils: verify_password(user.password_hash, password)
+    PasswordUtils->>UserService: verification_result
     UserService->>UI: user
     UI->>UI: _show_budget_main_view()
 ```
@@ -73,7 +103,7 @@ sequenceDiagram
     participant UI
     participant UserService
     participant UserRepository
-    participant new_user
+    participant PasswordUtils
     UI->>UI: _show_login_view()
     User->>UI: Click "Create account" button
     UI->>UI: _show_register_view()
@@ -81,8 +111,9 @@ sequenceDiagram
     UI->>UserService: create_user(username, password)
     UserService->>UserRepository: find_user(username)
     UserRepository->>UserService: None
-    UserService->>new_user: User(username, password)
-    UserService->>UserRepository: create(new_user)
+    UserService->>PasswordUtils: hash_password(password)
+    PasswordUtils->>UserService: hashed_password
+    UserService->>UserRepository: create(User(username, hashed_password))
     UserRepository->>UserService: user
     UserService->>UI: user
     UI->>UI: _show_budget_main_view()
