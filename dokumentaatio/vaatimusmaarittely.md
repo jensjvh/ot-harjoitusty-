@@ -6,27 +6,28 @@ Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla
 
 ## Toiminnallisuudet
 
-### Perusversio
+### Ennen kirjautumista
 
-- [x] Yksinkertainen käyttöliittymä.
-- [x] Käyttäjä voi luoda järjestelmään käyttäjätunnuksen salasanalla
-  - [x] Tunnusten ja salasanan täytyy täyttää vaatimukset (uniikki käyttäjä, tarpeeksi pitkä)
-- [x] Käyttäjä voi kirjautua järjestelmään
-- [x] Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
-- [x] Käyttäjä voi syöttää tulot ja menot kategorioittain.
-  - [x] Käyttäjä voi kirjata tulo- tai menotägin (esim. asuminen, ruoka, vapaa-aika).
-  - [x] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
-- [x] Käyttäjä voi poistaa päänäkymästä luotuja budjetti-objekteja.
-- [x] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
-- [x] Käyttäjä näkee kuvaajasta tulot ja menot eri päiville.
+- Käyttäjä voi luoda järjestelmään käyttäjätunnuksen salasanalla
+  - Tunnusten ja salasanan täytyy täyttää vaatimukset (uniikki käyttäjä, tarpeeksi pitkä)
+- Käyttäjä voi kirjautua järjestelmään
+- Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
+
+### Kirjautumisen jälkeen
+
+- Käyttäjä voi syöttää tulot ja menot kategorioittain.
+  - Käyttäjä voi kirjata tulo- tai menotägin (esim. asuminen, ruoka, vapaa-aika).
+  - Käyttäjien syöttämät tiedot lisätään tietokantaan, ja niihin pääsee käsiksi vain käyttäjä.
+- Käyttäjä näkee listalta lisäämänsä budjetit.
+- Käyttäjä voi poistaa listalta valittuja budjetteja.
+- Käyttäjä voi tarkastella tilastoja säästöistään.
+- Käyttäjä näkee kuvaajasta tulot ja menot eri päiville.
 
 ### Jatkokehitys
 
-- [ ] Export ja Import toiminto CSV -tiedostoille.
-- [ ] Haku- ja filtteröintitoiminto budjeteille.
-- [ ] Käyttäjä voi muokata annettuja tietoja
-- [ ] Kalenterinäkymä.
-- [ ] Käyttäjä voi tarkastella kuukausittaista yhteenvetoa.
-  - [ ] Yhteenvedossa näytetään menot kategoriakohtaisesti.
-- [ ] Käyttäjätunnuksen ja tietojen poisto.
-- [ ] Ennuste käyttäjän budjetin kehityksestä.
+- Export ja Import toiminto CSV -tiedostoille.
+- Haku- ja filtteröintitoiminto budjeteille.
+- Käyttäjä voi muokata annettuja tietoja.
+- Kalenterinäkymä.
+- Käyttäjätunnuksen ja tietojen poisto.
+- Ennuste käyttäjän budjetin kehityksestä.
