@@ -116,4 +116,5 @@ class LoginView:
         position_x = (screen_width // 2) - (window_width // 2)
         position_y = (screen_height // 2) - (window_height // 2)
 
-        self._root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
+        self._root.geometry(
+            f"{window_width}x{window_height}+{position_x}+{position_y}")
