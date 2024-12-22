@@ -14,7 +14,7 @@ Käyttäjät voivat luoda sovellukseen oman käyttäjätilin. Sovelluksen avulla
 - [x] Käyttäjä voi kirjautua järjestelmään
 - [x] Käyttäjä voi kirjautua ulos järjestelmästä, ja sovellus estää pääsyn ilman kirjautumista.
 - [x] Käyttäjä voi syöttää tulot ja menot kategorioittain.
-  - [ ] Käyttäjä voi valita kustannusluokan (esim. asuminen, ruoka, vapaa-aika).
+  - [x] Käyttäjä voi kirjata tulo- tai menotägin (esim. asuminen, ruoka, vapaa-aika).
   - [x] Jokaisella käyttäjällä on oma tietorakenne tai tiedosto, jossa säilytetään käyttäjän yksilölliset tiedot.
 - [x] Käyttäjä voi poistaa päänäkymästä luotuja budjetti-objekteja.
 - [x] Käyttäjä voi tarkastella tulojen ja menojen välistä erotusta.
