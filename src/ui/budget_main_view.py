@@ -265,7 +265,8 @@ class BudgetMainView:
                                width=29, date_pattern='dd.mm.yyyy')
         date_entry.grid(row=2, column=1, padx=10, pady=5)
 
-        tag_label = ttk.Label(create_budget_window, text="Tag (up to 10 characters):")
+        tag_label = ttk.Label(create_budget_window,
+                              text="Tag (up to 10 characters):")
         tag_label.grid(row=3, column=0, padx=10, pady=5)
         tag_entry = ttk.Entry(create_budget_window, width=30)
         tag_entry.grid(row=3, column=1, padx=10, pady=5)
