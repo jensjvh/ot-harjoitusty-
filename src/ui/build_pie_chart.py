@@ -2,10 +2,11 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk, constants
 
+
 def generate_pie_chart(budgets, master):
     """
     Visualize expenses by tags with a Matplotlib pie chart.
-    
+
     Parameters
     ----------
     budgets(list[Budget]): A list of budgets.
@@ -27,7 +28,8 @@ def generate_pie_chart(budgets, master):
     total_expense = sum(amounts)
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    wedges, texts, autotexts = ax.pie(amounts, labels=tags, autopct='%1.1f%%', startangle=90)
+    wedges, texts, autotexts = ax.pie(
+        amounts, labels=tags, autopct='%1.1f%%', startangle=90)
     ax.axis('equal')
     ax.set_title('Expenses by Tags')
 

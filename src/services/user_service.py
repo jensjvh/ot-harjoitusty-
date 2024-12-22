@@ -77,6 +77,9 @@ class UserService:
         self._user = None
 
     def get_current_user(self):
+        """
+        Return the current user.
+        """
         return self._user
 
 

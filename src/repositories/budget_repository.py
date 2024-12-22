@@ -6,16 +6,22 @@ class BudgetRepository:
     """A class used for database operations on budget objects."""
 
     def __init__(self, connection):
-        """Class constructor.
-
+        """
+        Class constructor.
         Parameters
         ----------
-            connection: SQLite `Connection` object.
+            connection(Connection): SQLite `Connection` object.
         """
         self._connection = connection
 
     def create(self, budget):
-        """Insert the budget object into the database."""
+        """
+        Insert the budget object into the database.
+
+        Parameters
+        ----------
+            budget(Budget): A budget object.
+        """
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -35,6 +41,13 @@ class BudgetRepository:
                       budget_id)
 
     def delete_budget_by_id(self, budget_id):
+        """
+        Delete a budget from the database given its ID.
+
+        Parameters
+        ----------
+            budget_id(int): The id of the budget.
+        """
         cursor = self._connection.cursor()
         cursor.execute('''
             DELETE FROM budgets
@@ -43,6 +56,7 @@ class BudgetRepository:
         self._connection.commit()
 
     def find_all(self):
+        """Find all budgets from the database."""
         cursor = self._connection.cursor()
 
         cursor.execute("select * from budgets")
@@ -52,7 +66,13 @@ class BudgetRepository:
         return [Budget(row["user"], row["amount"], row["category"], row["date"]) for row in rows]
 
     def find_by_username(self, username):
-        """Find all budget objects of a user."""
+        """
+        Find all budget objects of a user.
+
+        Parameters
+        ----------
+            username(str): Username string.
+        """
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -74,6 +94,10 @@ class BudgetRepository:
     def delete_all_by_username(self, username):
         """
         Delete all budgets by username.
+
+        Parameters
+        ----------
+            username(str): Username string.
         """
         cursor = self._connection.cursor()
 

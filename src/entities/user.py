@@ -3,21 +3,10 @@ class User:
 
     Attributes
     ----------
-    username: str
-        The username of the user
-    password_hash: str
-        The hashed password of the user
+        username(str): The username of the user.
+        password_hash(str): The hashed password of the user.
     """
 
     def __init__(self, username, password_hash):
-        """
-        Parameters
-        ----------
-        username : str
-            The username of the user
-        password_hash : str
-            The hashed password of the user
-        """
-
         self.username = username
         self.password_hash = password_hash

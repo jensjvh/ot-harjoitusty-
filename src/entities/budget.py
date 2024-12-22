@@ -2,7 +2,7 @@ class Budget:
     """
     A class representing a Budget object of a user.
 
-    Parameters
+    Attributes
     ----------
         user(str): Username string.
         amount(float): Amount of the budget.

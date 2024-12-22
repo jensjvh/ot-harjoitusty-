@@ -361,7 +361,7 @@ class BudgetMainView:
     def _update_stats(self, budgets):
         """
         Update the average monthly savings and current month stats.
-        
+
         Parameters
         ----------
             budgets(list[Budget]): A list containing Budget objects.
